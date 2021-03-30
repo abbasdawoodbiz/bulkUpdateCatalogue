@@ -1,5 +1,4 @@
 # Batch Product Uploader
---
 This project is the repo of any batch uploading using a preset object template to any object only, or object supporting stores such as MongoDB.
 
 ## Environment readiness
