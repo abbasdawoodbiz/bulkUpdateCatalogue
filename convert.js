@@ -10,7 +10,7 @@ let categories = require('./categories');
 
 const options = yargs
     .usage('Usage: -c <category name>')
-    .option('c', { alias: 'category', describe: "sunglasses, tunics, trousers, sliders, leggings, skip", type: 'string', demandOption: true })
+    .option('c', { alias: 'category', describe: "sunglasses, tunics, trousers, sliders, leggings, kidstopwear, skip", type: 'string', demandOption: true })
     .option('u', {alias: 'update-price', describe: "use only if updating wrong vms entries", type: 'string'})
     .argv;
 
@@ -42,7 +42,7 @@ function getJsonFromCsv(filename, formatValueByType) {
 }
 
 function writeMigrationFile(json, filename, format) {
-    fs.writeFile(__dirname + `/${filename}.json`, JSON.stringify(json), (err) => {
+    fs.writeFile(__dirname + `/output/${filename}.json`, JSON.stringify(json), (err) => {
         if (err) {
             console.error(err);
         } else {
@@ -69,6 +69,7 @@ function createProduct() {
                 case 'tunics': s= categories.generateTopsAndTunicsProduct(p.id, p.name, p.category_id, p.size, p.design, p.color, p.mrp); break;
                 case 'mens': s= categories.mensTopwear(p.id, p.name, p.category_id, p.material, p.color, p.size, p.design, p.mrp); break;
                 case 'beautyProducts': s= categories.generateBeautyProducts(p.id, p.name, p.category_id, p.volume, p.weight, p.design, p.brand, p.type, p.description, p.pack_size); break;
+                case 'kidstopwear': s = categories.generateKidsTopwear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
             }
             console.log('Converted product for ' + p.name);
             return s;
@@ -84,9 +85,17 @@ function createCentreProducts() {
 
     let products = [];
     let updatePrices = [];
+    let up = "";
     if (options['update-price'] === 'update'){
         console.log('just revising prices..');
         updatePrices = getJsonFromCsv('prices');
+        _.each(updatePrices, p => {
+        up = up + `\n
+            UPDATE vms.client_vendor_products
+            SET exfactory_price = ${p.price}
+            WHERE client_vendor_detail_id = ${p.client_vendor_id} AND product_id = ${p.cpid};
+        `
+    });
     } else if(options.category !== 'skip'){
         products = getJsonFromCsv('input');
     }
@@ -129,15 +138,15 @@ function createCentreProducts() {
             "active": true,
             "status": "approved",
             "created_at": {
-                "$date": "2021-03-25T09:32:47.570Z"
+                "$date": categories.getDate()
             },
             "updated_at": {
-                "$date": "2021-03-25T13:54:13.147Z"
+                "$date": categories.getDate()
             },
             "created_by": {
-                "name": "Nikhil Bharadwaj",
-                "id": 34379,
-                "email": "nikhil.bharadwaj@bizongo.com"
+                "name": "Abbas Dawood",
+                "id": 34155,
+                "email": "abbas.dawood@bizongo.com"
             },
             "updated_by": {
                 "name": "Abbas Dawood",
@@ -172,9 +181,9 @@ function createCentreProducts() {
                 ) 
             VALUES
                 (
-                    '2021-03-15 09:36:39.885',
-                    '2021-03-15 09:36:39.885',
-                    '{5617,11546,12920,13908}', 
+                    '${categories.getDate().split('T').join(' ').slice(0,-1)}',
+                    '${categories.getDate().split('T').join(' ').slice(0,-1)}',
+                    '{7,971}', 
                     NULL, 
                     true, 
                     ${p.price}, 
@@ -205,8 +214,8 @@ function createCentreProducts() {
                 ) 
             VALUES
                 (
-                    '2021-03-15 09:36:39.885', 
-                    '2021-03-15 09:36:39.885', 
+                    '${categories.getDate().split('T').join(' ').slice(0,-1)}', 
+                    '${categories.getDate().split('T').join(' ').slice(0,-1)}', 
                     true, 
                     ${p._id["$numberLong"]}, 
                     '${p.hsn_code}', 
@@ -215,18 +224,13 @@ function createCentreProducts() {
                 );`
     });
 
-    let up = "";
-    _.each(updatePrices, p => {
-        up = up + `\n
-            UPDATE vms.client_vendor_products
-            SET exfactory_price = ${p.price}
-            WHERE client_vendor_detail_id = ${p.client_vendor_id} AND product_id = ${p.cpid};
-        `
-    });
+    
 
     writePlainTextFile(str,"taxationinsert", "sql");
     writePlainTextFile(prices,"vmsinsert", "sql");
-    writePlainTextFile(up,"vmsupdate","sql");
+    if(up && up.length > 0){
+        writePlainTextFile(up,"vmsupdate","sql");
+    }
 
     // Remove the price key from the centreProducts array of objects
     products = _.map(products, p => {
@@ -239,7 +243,6 @@ function createCentreProducts() {
 
     // Write the mongo import json file for centre products
     writeMigrationFile(products, 'centreproducts');
-
 }
 
 createProduct();

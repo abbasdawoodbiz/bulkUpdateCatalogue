@@ -1,3 +1,7 @@
+function getDate(){
+    return new Date().toISOString();
+}
+
 function generateSliderProduct(id, name, category_id, material, type, design, mrp, pack_size, date, month, year) {
 
     let packsize = pack_size ? parseInt(pack_size) : 1;
@@ -739,11 +743,137 @@ function generateBeautyProducts(id, name, category_id, volume, weight, design, b
 
 }
 
+function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pack_size){
+    let packsize = pack_size ? parseInt(pack_size) : 1;
+    // console.log(typeof category_id, category_id)
+    if (category_id === '1050'){
+        return {
+            "_id": {
+                "$numberLong": `${id}`
+            },
+            "name": `${name}`,
+            "product_hash": `|cid:1052|type:SPECIFICATION-3:${color}-133:${design}-339:${size}-863:${mrp}|type:UOM-Pack Size:1-Pieces|`,
+            "category_id": {
+                "$numberLong": "1050"
+            },
+            "tenant_id": {
+                "$numberLong": "1"
+            },
+            "category_template_id": {
+                "$numberLong": "1052"
+            },
+            "templates": [{
+                "name": "Units of Measure",
+                "is_default": false,
+                "type": "UOM",
+                "attributes": [{
+                    "name": "Pack Size",
+                    "unit": "Pieces",
+                    "unit_for_price_calculation": "Pieces",
+                    "use_for_price_calculation": true,
+                    "value": packsize
+                }]
+            }, {
+                "name": "Specification",
+                "is_default": false,
+                "type": "SPECIFICATION",
+                "attributes": [{
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 3,
+                    "mandatory": true,
+                    "name": "Color",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["Baby Pink", "Black", "Ecru Melange", "Fuchsia", "Grey Melange", "Mauve", "LightGreen", "Lemon", "Mint", "Navy", "OffWhite", "Peach", "Pink", "Purple", "RED", "Sea Green", "Sky Blue", "Turquoise", "White", "Yellow"],
+                    "value": `${color}`
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 339,
+                    "mandatory": true,
+                    "name": "Size",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["6-12M", "12-18M", "18-24M", "2-3Y", "4-5Y", "6-7Y", "8-9Y", "10-11Y", "12-13Y", "14-15Y", "16Y", "38", "40", "42", "44"],
+                    "value": `${size}`
+                }, {
+                    "active": true,
+                    "data_type": "free_text",
+                    "id": 133,
+                    "mandatory": true,
+                    "name": "Design Code",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "value": `${design}`
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 10,
+                    "mandatory": false,
+                    "name": "Material",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["Cotton", "100%Cotton"]
+                }, {
+                    "active": true,
+                    "data_type": "number",
+                    "id": 863,
+                    "mandatory": true,
+                    "name": "MRP",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "value": parseFloat(mrp)
+                }]
+            }],
+            "is_combo": false,
+            "is_ppe": false,
+            "sku_type": "direct",
+            "sku_code": `BZ-SKU-0${id}`,
+            "category_template_version": {
+                "$numberLong": "2"
+            },
+            "pack_size": {
+                "unit": "Pieces",
+                "name": "pack size",
+                "value": {
+                    "$numberLong": `${packsize}`
+                }
+            },
+            "status": "approved",
+            "product_update_status": "update_not_required",
+            "version": {
+                "$numberLong": "1"
+            },
+            "created_at": {
+                "$date": getDate()
+            },
+            "updated_at": {
+                "$date": getDate()
+            },
+            "created_by": {
+                "name": "Sonali Patil",
+                "id": 34593,
+                "email": "sonali.patil@bizongo.com"
+            },
+            "updated_by": {
+                "name": "Sonali Patil",
+                "id": 34593,
+                "email": "sonali.patil@bizongo.com"
+            }
+        }
+    } else return null;
+}
+
 module.exports = {
     generateSliderProduct: generateSliderProduct,
     generateSunglassesProducts: generateSunglassesProducts,
     generateTopsAndTunicsProduct: generateTopsAndTunicsProduct,
     generateDenimsProduct: generateDenimsProduct,
     mensTopwear: mensTopwear,
-    generateBeautyProducts: generateBeautyProducts
+    generateBeautyProducts: generateBeautyProducts,
+    generateKidsTopwear: generateKidsTopwear,
+    getDate: getDate
 };
