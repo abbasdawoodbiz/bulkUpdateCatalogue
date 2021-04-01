@@ -9,8 +9,8 @@ let categories = require('./categories');
 /** Initialise default options */
 
 const options = yargs
-    .usage('Usage: -c <category name>')
-    .option('c', { alias: 'category', describe: "sunglasses, tunics, trousers, sliders, leggings, kidstopwear, skip", type: 'string', demandOption: true })
+    .usage('Usage: -c -u')
+    .option('c', { alias: 'category', describe: "skip", type: 'string', demandOption: false })
     .option('u', {alias: 'update-price', describe: "use only if updating wrong vms entries", type: 'string'})
     .argv;
 
@@ -56,20 +56,34 @@ function createProduct() {
 
         let products = getJsonFromCsv('input');
         
-        console.log(options.category);
-        
-        
         products = _.map(products, p => {
             
             var s;
-            switch(options.category){
-                case 'sliders': s = categories.generateSliderProduct(p.id, p.name, p.category_id, p.material, p.type,p.design, p.mrp); break;
-                case 'sunglasses': s = categories.generateSunglassesProducts(p.id, p.name, p.design, p.brand, p.color); break;
-                case 'trousers': s= categories.generateDenimsProduct(p.id, p.name, p.category_id, p.color, p.design, p.fabric, p.size); break;
-                case 'tunics': s= categories.generateTopsAndTunicsProduct(p.id, p.name, p.category_id, p.size, p.design, p.color, p.mrp); break;
-                case 'mens': s= categories.mensTopwear(p.id, p.name, p.category_id, p.material, p.color, p.size, p.design, p.mrp); break;
+
+            /**
+             * Leggings	1041
+                sliders and slipons	1010
+                sunglasses	1044
+                Tops, tunics and kurtis	1047
+                Trousers and Denims	1048
+                Men's topwear	1052
+                Belts	1053
+                kurta, blouse and pants	1060
+                unisex toys	1063
+                Kids topwear	1050
+                Kids bottomwear	1051
+                Men's bottomwear	1065
+             */
+
+            switch(p.category_id){
+                case '1010': s = categories.generateSliderProduct(p.id, p.name, p.category_id, p.material, p.type,p.design, p.mrp); break;
+                case '1044': s = categories.generateSunglassesProducts(p.id, p.name, p.category_id, p.design, p.brand, p.color); break;
+                case '1048': s= categories.generateDenimsProduct(p.id, p.name, p.category_id, p.color, p.design, p.fabric, p.size); break;
+                case '1047': s= categories.generateTopsAndTunicsProduct(p.id, p.name, p.category_id, p.size, p.design, p.color, p.mrp); break;
+                case '1052': s= categories.mensTopwear(p.id, p.name, p.category_id, p.material, p.color, p.size, p.design, p.mrp); break;
                 case 'beautyProducts': s= categories.generateBeautyProducts(p.id, p.name, p.category_id, p.volume, p.weight, p.design, p.brand, p.type, p.description, p.pack_size); break;
-                case 'kidstopwear': s = categories.generateKidsTopwear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
+                case '1050': s = categories.generateKidsTopwear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
+                case '1051': s = categories.generateKidsBottomwear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
             }
             console.log('Converted product for ' + p.name);
             return s;
@@ -181,8 +195,8 @@ function createCentreProducts() {
                 ) 
             VALUES
                 (
-                    '${categories.getDate().split('T').join(' ').slice(0,-1)}',
-                    '${categories.getDate().split('T').join(' ').slice(0,-1)}',
+                    '${categories.getDateForPostge()}', 
+                    '${categories.getDateForPostge()}', 
                     '{7,971}', 
                     NULL, 
                     true, 
@@ -214,8 +228,8 @@ function createCentreProducts() {
                 ) 
             VALUES
                 (
-                    '${categories.getDate().split('T').join(' ').slice(0,-1)}', 
-                    '${categories.getDate().split('T').join(' ').slice(0,-1)}', 
+                    '${categories.getDateForPostge()}', 
+                    '${categories.getDateForPostge()}', 
                     true, 
                     ${p._id["$numberLong"]}, 
                     '${p.hsn_code}', 

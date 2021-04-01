@@ -2,7 +2,11 @@ function getDate(){
     return new Date().toISOString();
 }
 
-function generateSliderProduct(id, name, category_id, material, type, design, mrp, pack_size, date, month, year) {
+function getDateForPostge(){
+    return getDate().split('T').join(' ').slice(0,-1);
+}
+
+function generateSliderProduct(id, name, category_id, material, type, design, mrp, pack_size) {
 
     let packsize = pack_size ? parseInt(pack_size) : 1;
 
@@ -69,6 +73,7 @@ function generateSliderProduct(id, name, category_id, material, type, design, mr
                     "value_options": [],
                     "value": `${design.trim()}`
                 },{
+                    "active": true,
                     "data_type": "number",
                     "id": 863,
                     "mandatory": true,
@@ -77,7 +82,7 @@ function generateSliderProduct(id, name, category_id, material, type, design, mr
                     "type": "basic",
                     "unit_id": null,
                     "value_options": [],
-                    "value": `${parseFloat(mrp)}`
+                    "value": parseFloat(mrp)
                 }]
             }],
             "is_combo": false,
@@ -100,10 +105,10 @@ function generateSliderProduct(id, name, category_id, material, type, design, mr
                 "$numberLong": "1"
             },
             "created_at": {
-                "$date": "2021-03-20T09:36:39.885Z"
+                "$date": getDate()
             },
             "updated_at": {
-                "$date": "2021-03-20T06:20:00.583Z"
+                "$date": getDate()
             },
             "created_by": {
                 "name": "Sonali Patil",
@@ -207,7 +212,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                     "type": "basic",
                     "unit_id": null,
                     "value_options": [],
-                    "value":`${mrp}`
+                    "value": parseFloat(mrp)
                 }]
             }],
             "is_combo": false,
@@ -230,10 +235,10 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                 "$numberLong": "1"
             },
             "created_at": {
-                "$date": "2021-03-24T05:46:29.194Z"
+                "$date": getDate()
             },
             "updated_at": {
-                "$date": "2021-03-24T05:46:29.268Z"
+                "$date": getDate()
             },
             "created_by": {
                 "name": "Sonali Patil",
@@ -323,7 +328,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
                     "type": "basic",
                     "unit_id": null,
                     "value_options": [],
-                    "value": `${parseFloat(mrp)}`
+                    "value": parseFloat(mrp)
                 }]
             }],
             "is_combo": false,
@@ -346,10 +351,10 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
                 "$numberLong": "1"
             },
             "created_at": {
-                "$date": "2021-03-25T05:46:29.194Z"
+                "$date": getDate()
             },
             "updated_at": {
-                "$date": "2021-03-25T05:46:29.268Z"
+                "$date": getDate()
             },
             "created_by": {
                 "name": "Sonali Patil",
@@ -482,12 +487,13 @@ function generateDenimsProduct(id, name, category_id, color, design, fabric, siz
     else return null;
 }
 
-function generateSunglassesProducts(id, name, design, brand, color, pack_size, date, month, year) {
+function generateSunglassesProducts(id, name, design, brand, color, pack_size) {
     let packsize = pack_size ? parseInt(pack_size) : 1;
 
-    return {
-        "_id": {
-            "$numberLong": `${id}`
+    if(category_id === '1044'){
+        return {
+            "_id": {
+                "$numberLong": `${id}`
         },
         "name": `${name}`,
         "product_hash": `|cid:1033|type:SPECIFICATION-133:${design}-4:${brand}-3:${color}|type:UOM-Pack Size:${packsize}-Pieces|`,
@@ -585,10 +591,10 @@ function generateSunglassesProducts(id, name, design, brand, color, pack_size, d
             "$numberLong": "2"
         },
         "created_at": {
-            "$date": "2021-03-18T09:32:47.397Z"
+            "$date": getDate()
         },
         "updated_at": {
-            "$date": "2021-03-18T13:54:13.162Z"
+            "$date": getDate()
         },
         "created_by": {
             "name": "Sonali Patil",
@@ -601,6 +607,8 @@ function generateSunglassesProducts(id, name, design, brand, color, pack_size, d
             "email": "abbas.dawood@bizongo.com"
         }
     };
+    } else return null;
+        
 }
 
 function generateBeautyProducts(id, name, category_id, volume, weight, design, brand, type, description, pack_size){
@@ -722,10 +730,10 @@ function generateBeautyProducts(id, name, category_id, volume, weight, design, b
                 "$numberLong": "1"
             },
             "created_at": {
-                "$date": "2021-03-25T15:35:26.921Z"
+                "$date": getDate()
             },
             "updated_at": {
-                "$date": "2021-03-25T06:34:25.078Z"
+                "$date": getDate()
             },
             "created_by": {
                 "name": "Nikhil Bharadwaj",
@@ -867,6 +875,128 @@ function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pa
     } else return null;
 }
 
+function generateKidsBottomwear(id, name, category_id, color, size, design, mrp, pack_size){
+    let packsize = pack_size ? parseInt(pack_size) : 1;
+    if(category_id === '1051'){
+        return {
+            "_id": {
+                "$numberLong": `${id}`
+            },
+            "name": `${name}`,
+            "product_hash": `|cid:1086|type:SPECIFICATION-3:${color.trim()}-133:${design.trim()}-339:${size.trim()}-863:${mrp}|type:UOM-Pack Size:1-Pieces|`,
+            "category_id": {
+                "$numberLong": `${category_id}`
+            },
+            "tenant_id": {
+                "$numberLong": "1"
+            },
+            "category_template_id": {
+                "$numberLong": "1086"
+            },
+            "templates": [{
+                "name": "Units of Measure",
+                "is_default": false,
+                "type": "UOM",
+                "attributes": [{
+                    "name": "Pack Size",
+                    "unit": "Pieces",
+                    "unit_for_price_calculation": "Pieces",
+                    "use_for_price_calculation": true,
+                    "value": packsize
+                }]
+            }, {
+                "name": "Specification",
+                "is_default": false,
+                "type": "SPECIFICATION",
+                "attributes": [{
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 10,
+                    "mandatory": false,
+                    "name": "Material",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["Cotton", "100%Cotton"]
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 3,
+                    "mandatory": true,
+                    "name": "Color",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["Mint", "RED", "Sky Blue", "Lemon", "Pink", "White", "Peach", "LightGreen", "Baby Pink", "OffWhite", "Ecru Melange"],
+                    "value": `${color}`
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 339,
+                    "mandatory": true,
+                    "name": "Size",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["6-12M", "12-18M", "18-24M", "2-3Y", "4-5Y", "6-7Y", "8-9Y", "10-11Y", "12-13Y", "14-15Y", "16Y", "38", "40", "42", "44"],
+                    "value": `${size}`
+                }, {
+                    "active": true,
+                    "data_type": "free_text",
+                    "id": 133,
+                    "mandatory": true,
+                    "name": "Design Code",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "value": `${design}`
+                }, {
+                    "active": true,
+                    "data_type": "number",
+                    "id": 863,
+                    "mandatory": true,
+                    "name": "MRP",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value": parseFloat(mrp)
+                }]
+            }],
+            "is_combo": false,
+            "is_ppe": false,
+            "sku_type": "direct",
+            "sku_code": `BZ-SKU-0${id}`,
+            "category_template_version": {
+                "$numberLong": "2"
+            },
+            "pack_size": {
+                "unit": "Pieces",
+                "name": "pack size",
+                "value": {
+                    "$numberLong": `${packsize}`
+                }
+            },
+            "status": "approved",
+            "product_update_status": "update_not_required",
+            "version": {
+                "$numberLong": "1"
+            },
+            "created_at": {
+                "$date": getDate()
+            },
+            "updated_at": {
+                "$date": getDate()
+            },
+            "created_by": {
+                "name": "Sonali Patil",
+                "id": 34593,
+                "email": "sonali.patil@bizongo.com"
+            },
+            "updated_by": {
+                "name": "Sonali Patil",
+                "id": 34593,
+                "email": "sonali.patil@bizongo.com"
+            }
+        }
+    } else return null;
+}
+
 module.exports = {
     generateSliderProduct: generateSliderProduct,
     generateSunglassesProducts: generateSunglassesProducts,
@@ -875,5 +1005,7 @@ module.exports = {
     mensTopwear: mensTopwear,
     generateBeautyProducts: generateBeautyProducts,
     generateKidsTopwear: generateKidsTopwear,
-    getDate: getDate
+    generateKidsBottomwear: generateKidsBottomwear,
+    getDate: getDate,
+    getDateForPostge: getDateForPostge
 };

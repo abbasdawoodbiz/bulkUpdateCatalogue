@@ -10,7 +10,9 @@ To run this project, you will need:
 - Make sure you verify the category template id in all categories in `categories.json` before you run the script
 
 ## Running the script
-- Use the command `node convert.js -c <category name>`
+- Clone this repo using github
+- Install dependencies by running `npm i`
+- Once dependencies are installed, use the command `node convert.js -c <category name>`
 - Category name has to be from one of the supported categories, and is a mandatory input
 - Output files will be created in the `output` dir
 
