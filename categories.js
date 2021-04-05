@@ -487,7 +487,7 @@ function generateDenimsProduct(id, name, category_id, color, design, fabric, siz
     else return null;
 }
 
-function generateSunglassesProducts(id, name, design, brand, color, pack_size) {
+function generateSunglassesProducts(id, name, category_id, design, brand, color, pack_size) {
     let packsize = pack_size ? parseInt(pack_size) : 1;
 
     if(category_id === '1044'){
