@@ -997,9 +997,8 @@ function generateKidsBottomwear(id, name, category_id, color, size, design, mrp,
     } else return null;
 }
 
-function mensBottomWear(id, name, category_id, color, size, design, mrp, pack_size){
+function generateMensBottomWear(id, name, category_id, color, size, design, mrp, pack_size){
     let packsize = pack_size ? parseInt(pack_size) : 1;
-
     if(category_id === '1065'){
         return {
             "_id": {
@@ -1133,5 +1132,5 @@ module.exports = {
     generateKidsBottomwear: generateKidsBottomwear,
     getDate: getDate,
     getDateForPostge: getDateForPostge,
-    mensBottomWear: mensBottomWear
+    generateMensBottomWear: generateMensBottomWear
 };
