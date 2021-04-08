@@ -343,7 +343,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
                 "$numberLong": `${id}`
             },
             "name": `${name.trim()}`,
-            "product_hash": `|cid:1056|type:SPECIFICATION-3:${color.trim()}-133:${design.trim()}-339:${size.trim()}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "product_hash": `|cid:1096|type:SPECIFICATION-3:${color.trim()}-133:${design.trim()}-339:${size.trim()}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
             "category_id": {
                 "$numberLong": "1047"
             },
@@ -351,7 +351,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1056"
+                "$numberLong": "1096"
             },
             "templates": [{
                 "name": "Units of Measure",
@@ -376,7 +376,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
                     "name": "Size",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["S", "M", "L", "XS", "XL", "XXL"],
+                    "value_options": ["S", "M", "L", "XS", "XL", "XXL", "XXXL"],
                     "value": `${size.trim()}`
                 }, {
                     "active": true,
@@ -396,7 +396,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
                     "name": "Color",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["Black", "Coral", "Green", "Navy", "Peach", "Red", "White", "Wine", "Yellow", "Mustard", "Pink", "Grey", "Blue", "Fuchsia", "Maroon", "Peach", "Turquoise", "Beige", "Sky Blue"],
+                    "value_options": ["Black", "Green", "Navy", "Peach", "Red", "White", "Wine", "Yellow", "Mustard", "Pink", "Grey", "Blue", "Fuschia", "Magenta", "Maroon", "Light Green", "Teal", "Fuchsia", "Light Blue", "Mehndi Green", "Rust", "Aqua Blue", "Light Olive", "Dark Grey", "Coral", "Lime Green", "Bottle Green", "Mint Green"],
                     "value": `${color.trim()}`
                 }, {
                     "active": true,
@@ -416,7 +416,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
             "sku_type": "direct",
             "sku_code": `BZ-SKU-0${id}`,
             "category_template_version": {
-                "$numberLong": "6"
+                "$numberLong": "11"
             },
             "pack_size": {
                 "unit": "Pieces",
@@ -1039,6 +1039,130 @@ function generateKidsBottomwear(id, name, category_id, color, size, design, mrp,
     } else return null;
 }
 
+function generateMensBottomWear(id, name, category_id, color, size, design, mrp, pack_size){
+    let packsize = pack_size ? parseInt(pack_size) : 1;
+    if(category_id === '1065'){
+        return {
+            "_id": {
+                "$numberLong": `${id}`
+            },
+            "name": `${name}`,
+            "product_hash": `|cid:1081|type:SPECIFICATION-3:${color}-133:${design}-339:${size}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "category_id": {
+                "$numberLong": "1065"
+            },
+            "tenant_id": {
+                "$numberLong": "1"
+            },
+            "category_template_id": {
+                "$numberLong": "1081"
+            },
+            "templates": [{
+                "name": "Units of Measure",
+                "is_default": false,
+                "type": "UOM",
+                "attributes": [{
+                    "name": "Pack Size",
+                    "unit": "Pieces",
+                    "unit_for_price_calculation": "Pieces",
+                    "use_for_price_calculation": true,
+                    "value": 1
+                }]
+            }, {
+                "name": "Specification",
+                "is_default": false,
+                "type": "SPECIFICATION",
+                "attributes": [{
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 10,
+                    "mandatory": false,
+                    "name": "Material",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["Cotton"]
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 339,
+                    "mandatory": true,
+                    "name": "Size",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["S", "M", "L", "XL", "XXL"],
+                    "value": `${size}`
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 3,
+                    "mandatory": true,
+                    "name": "Color",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["Deep Red", "Deep Olive", "Brick Orange", "Navy", "Peach", "Grey", "Neon Yellow", "Neon Orange", "Neon Blue", "Black", "Dark Blue", "Indigo", "White", "RED", "Green", "Blue", "Yellow", "Maroon", "Melange Grey"],
+                    "value": `${color}`
+                }, {
+                    "active": true,
+                    "data_type": "number",
+                    "id": 863,
+                    "mandatory": true,
+                    "name": "MRP",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "value": parseFloat(mrp)
+                }, {
+                    "active": true,
+                    "data_type": "free_text",
+                    "id": 133,
+                    "mandatory": true,
+                    "name": "Design Code",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "value": `${design}`
+                }]
+            }],
+            "is_combo": false,
+            "is_ppe": false,
+            "sku_type": "direct",
+            "sku_code": `BZ-SKU-0${id}`,
+            "category_template_version": {
+                "$numberLong": "1"
+            },
+            "pack_size": {
+                "unit": "Pieces",
+                "name": "pack size",
+                "value": {
+                    "$numberLong": `${packsize}`
+                }
+            },
+            "status": "approved",
+            "product_update_status": "update_not_required",
+            "version": {
+                "$numberLong": "1"
+            },
+            "created_at": {
+                "$date": getDate()
+            },
+            "updated_at": {
+                "$date": getDate()
+            },
+            "created_by": {
+                "name": "Sonali Patil",
+                "id": 34593,
+                "email": "sonali.patil@bizongo.com"
+            },
+            "updated_by": {
+                "name": "Sonali Patil",
+                "id": 34593,
+                "email": "sonali.patil@bizongo.com"
+            }
+        };
+
+    } else return null;
+}
+
 module.exports = {
     generateSliderProduct: generateSliderProduct,
     generateSunglassesProducts: generateSunglassesProducts,
@@ -1050,5 +1174,6 @@ module.exports = {
     generateKidsBottomwear: generateKidsBottomwear,
     getDate: getDate,
     getDateForPostge: getDateForPostge,
-    generateLeggingsProduct: generateLeggingsProduct
+    generateLeggingsProduct: generateLeggingsProduct,
+    generateMensBottomWear: generateMensBottomWear
 };
