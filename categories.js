@@ -460,7 +460,7 @@ function generateDenimsProduct(id, name, category_id, color, design, fabric, siz
                 "$numberLong": `${id}`
             },
             "name": `${name}`,
-            "product_hash": `|cid:1114|type:SPECIFICATION-3:${color}-133:${design}-339:28-861:${fabric}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "product_hash": `|cid:1117|type:SPECIFICATION-3:${color}-133:${design}-339:28-861:${fabric}|type:UOM-Pack Size:${packsize}-Pieces|`,
             "category_id": {
                 "$numberLong": "1048"
             },
@@ -468,7 +468,7 @@ function generateDenimsProduct(id, name, category_id, color, design, fabric, siz
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1114"
+                "$numberLong": "1117"
             },
             "templates": [
                 {
@@ -482,7 +482,7 @@ function generateDenimsProduct(id, name, category_id, color, design, fabric, siz
                     "attributes":[
                         {"value": `${color}`,"mandatory":true,"name":"Color","type":"basic","qc_enabled":false,"value_options":["Black","Charcoal","Beige","Brown","Khakee","Navy","Olive","Silver","Royal Blue","Sky Blue","mix","MULTI","Indigo","Dark Grey","Mid Blue"],"active":true,"id":3,"data_type":"list_of_strings","unit_id":null},
                         {"value": `${size}`,"mandatory":true,"name":"Size","type":"basic","qc_enabled":false,"value_options":["28","30","32","34","36","38","40","42","44","26"],"active":true,"id":339,"data_type":"list_of_strings","unit_id":null},
-                        {"value": `${fabric}`,"mandatory":false,"name":"Fabric - Dobby","type":"basic","qc_enabled":false,"value_options":["Cotton Dobby","Dobby Checks","Cotton Yarn Dye","Cotton Knit","Satin","Satin Check","Satin Print","Satin with 5% Poly","Jeans","Denims","Dobby Poly","Heavy Knits","Twill","Cotton Knit with 5% poly","Dobby"],"active":true,"id":861,"data_type":"list_of_strings","unit_id":null},
+                        {"value": `${fabric}`,"mandatory":true,"name":"Fabric - Dobby","type":"basic","qc_enabled":false,"value_options":["Cotton Dobby","Dobby Checks","Cotton Yarn Dye","Cotton Knit","Satin","Satin Check","Satin Print","Satin with 5% Poly","Jeans","Denims","Dobby Poly","Heavy Knits","Twill","Cotton Knit with 5% poly","Dobby"],"active":true,"id":861,"data_type":"list_of_strings","unit_id":null},
                         {"value": `${design}`,"mandatory":true,"name":"Design Code","type":"basic","qc_enabled":false,"value_options":[],"active":true,"id":133,"data_type":"free_text","unit_id":null},{"mandatory":true,"name":"Material","type":"basic","qc_enabled":false,"value_options":["Cotton","Cotton Dobby","Dobby Checks","Cotton Yarn Dye","Cotton Knit","Satin","Satin Check","Satin Print","Satin with 5% Poly","Jeans","Denims","Heavy Knits","Twill","Cotton Knit with 5% poly","Dobby","Dobby Poly"],"active":true,"id":10,"data_type":"list_of_strings","unit_id":null},
                         {"value": `${mrp}`,"mandatory":true,"name":"MRP","type":"basic","qc_enabled":false,"value_options":[],"active":true,"id":863,"data_type":"number","unit_id":null}
                     ]
@@ -494,7 +494,7 @@ function generateDenimsProduct(id, name, category_id, color, design, fabric, siz
             "sku_type": "direct",
             "sku_code": `BZ-SKU-0${id}`,
             "category_template_version": {
-                "$numberLong": "15"
+                "$numberLong": "17"
             },
             "pack_size": {
                 "unit": "Pieces",
