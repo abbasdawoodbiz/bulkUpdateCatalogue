@@ -14,7 +14,7 @@ function generateLeggingsProduct(id, name, category_id, color, size, design, mat
                 "$numberLong": `${id}`
             },
             "name": `${name.trim()}`,
-            "product_hash": `|cid:1103|type:SPECIFICATION-9:${type.trim()}-10:${material.trim()}-855:${design.trim()}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "product_hash": `|cid:1118|type:SPECIFICATION-3:${color.trim()}-339:${material.trim()}-133:${design.trim()}|type:UOM-Pack Size:${packsize}-Pieces|`,
             "category_id": {
                 "$numberLong": "1010"
             },
@@ -22,7 +22,7 @@ function generateLeggingsProduct(id, name, category_id, color, size, design, mat
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1103"
+                "$numberLong": "1118"
             },
             "templates": [
                 {
@@ -42,7 +42,19 @@ function generateLeggingsProduct(id, name, category_id, color, size, design, mat
                         { "value":`${material}`,"mandatory": false, "name": "Material", "type": "basic", "qc_enabled": false, "value_options": ["CTN_LCR", "Rayon"], "active": true, "id": 10, "data_type": "list_of_strings", "unit_id": null }, 
                         { "value":`${color}`,"mandatory": true, "name": "Color", "type": "basic", "qc_enabled": false, "value_options": ["RED", "TEAL", "Navy", "Fuchsia", "Beige", "White", "Black", "Mustard", "Maroon", "Blue", "Green", "Rust", "Royal Blue", "Red", "Teal"], "active": true, "id": 3, "data_type": "list_of_strings", "unit_id": null }, 
                         { "value":`${size}`,"mandatory": true, "name": "Size", "type": "basic", "qc_enabled": false, "value_options": ["S", "M", "L", "XL", "XXL"], "active": true, "id": 339, "data_type": "list_of_strings", "unit_id": null }, 
-                        { "value":`${design}`,"mandatory": true, "name": "Design Code", "type": "basic", "qc_enabled": false, "value_options": [], "active": true, "id": 133, "data_type": "free_text", "unit_id": null }
+                        { "value":`${design}`,"mandatory": true, "name": "Design Code", "type": "basic", "qc_enabled": false, "value_options": [], "active": true, "id": 133, "data_type": "free_text", "unit_id": null },
+                        {
+                            "active": true,
+                            "data_type": "number",
+                            "id": 863,
+                            "mandatory": false,
+                            "name": "MRP",
+                            "qc_enabled": false,
+                            "type": "basic",
+                            "unit_id": null,
+                            "value_options": [],
+                            "value": parseFloat(mrp)
+                        }
                     ]
                 }
             ],
@@ -51,7 +63,7 @@ function generateLeggingsProduct(id, name, category_id, color, size, design, mat
             "sku_type": "direct",
             "sku_code": `BZ-SKU-0${id}`,
             "category_template_version": {
-                "$numberLong": "3"
+                "$numberLong": "4"
             },
             "pack_size": {
                 "unit": "Pieces",
