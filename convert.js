@@ -77,13 +77,14 @@ function createProduct() {
 
             switch(p.category_id){
                 case '1010': s = categories.generateSliderProduct(p.id, p.name, p.category_id, p.material, p.type,p.design, p.mrp); break;
+                case '1041': s = categories.generateLeggingsProduct(p.id, p.name, p.category_id, p.color, p.size, p.design, p.material, p.mrp, p.pack_size); break;
                 case '1044': s = categories.generateSunglassesProducts(p.id, p.name, p.category_id, p.design, p.brand, p.color); break;
-                case '1048': s= categories.generateDenimsProduct(p.id, p.name, p.category_id, p.color, p.design, p.fabric, p.size); break;
                 case '1047': s= categories.generateTopsAndTunicsProduct(p.id, p.name, p.category_id, p.size, p.design, p.color, p.mrp); break;
-                case '1052': s= categories.mensTopwear(p.id, p.name, p.category_id, p.material, p.color, p.size, p.design, p.mrp); break;
-                case 'beautyProducts': s= categories.generateBeautyProducts(p.id, p.name, p.category_id, p.volume, p.weight, p.design, p.brand, p.type, p.description, p.pack_size); break;
+                case '1048': s= categories.generateDenimsProduct(p.id, p.name, p.category_id, p.color, p.design, p.fabric, p.size, p.mrp, p.pack_size); break;
                 case '1050': s = categories.generateKidsTopwear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
                 case '1051': s = categories.generateKidsBottomwear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
+                case '1052': s= categories.mensTopwear(p.id, p.name, p.category_id, p.material, p.color, p.size, p.design, p.mrp); break;
+                case 'beautyProducts': s= categories.generateBeautyProducts(p.id, p.name, p.category_id, p.volume, p.weight, p.design, p.brand, p.type, p.description, p.pack_size); break;
             }
             console.log('Converted product for ' + p.name);
             return s;

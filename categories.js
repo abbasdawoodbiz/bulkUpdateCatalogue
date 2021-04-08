@@ -1,10 +1,90 @@
-function getDate(){
+function getDate() {
     return new Date().toISOString();
 }
 
-function getDateForPostge(){
-    return getDate().split('T').join(' ').slice(0,-1);
+function getDateForPostge() {
+    return getDate().split('T').join(' ').slice(0, -1);
 }
+
+function generateLeggingsProduct(id, name, category_id, color, size, design, material, mrp, pack_size) {
+    let packsize = pack_size ? parseInt(pack_size) : 1;
+    if (category_id === '1041') {
+        return {
+            "_id": {
+                "$numberLong": `${id}`
+            },
+            "name": `${name.trim()}`,
+            "product_hash": `|cid:1103|type:SPECIFICATION-9:${type.trim()}-10:${material.trim()}-855:${design.trim()}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "category_id": {
+                "$numberLong": "1010"
+            },
+            "tenant_id": {
+                "$numberLong": "1"
+            },
+            "category_template_id": {
+                "$numberLong": "1103"
+            },
+            "templates": [
+                {
+                    "name": "Units of Measure",
+                    "is_default": false,
+                    "type": "UOM",
+                    "attributes": [
+                        {
+                            "name": "Pack Size", "unit": "Pieces", "unit_for_price_calculation": "Pieces", "use_for_price_calculation": true,
+                            "value": packsize
+                        }
+                    ]
+                },
+                {
+                    "name": "Specification",
+                    "is_default": false, "type": "SPECIFICATION", "attributes": [
+                        { "value":`${material}`,"mandatory": false, "name": "Material", "type": "basic", "qc_enabled": false, "value_options": ["CTN_LCR", "Rayon"], "active": true, "id": 10, "data_type": "list_of_strings", "unit_id": null }, 
+                        { "value":`${color}`,"mandatory": true, "name": "Color", "type": "basic", "qc_enabled": false, "value_options": ["RED", "TEAL", "Navy", "Fuchsia", "Beige", "White", "Black", "Mustard", "Maroon", "Blue", "Green", "Rust", "Royal Blue", "Red", "Teal"], "active": true, "id": 3, "data_type": "list_of_strings", "unit_id": null }, 
+                        { "value":`${size}`,"mandatory": true, "name": "Size", "type": "basic", "qc_enabled": false, "value_options": ["S", "M", "L", "XL", "XXL"], "active": true, "id": 339, "data_type": "list_of_strings", "unit_id": null }, 
+                        { "value":`${design}`,"mandatory": true, "name": "Design Code", "type": "basic", "qc_enabled": false, "value_options": [], "active": true, "id": 133, "data_type": "free_text", "unit_id": null }
+                    ]
+                }
+            ],
+            "is_combo": false,
+            "is_ppe": false,
+            "sku_type": "direct",
+            "sku_code": `BZ-SKU-0${id}`,
+            "category_template_version": {
+                "$numberLong": "3"
+            },
+            "pack_size": {
+                "unit": "Pieces",
+                "name": "pack size",
+                "value": {
+                    "$numberLong": `${packsize}`
+                }
+            },
+            "status": "approved",
+            "product_update_status": "update_not_required",
+            "version": {
+                "$numberLong": "1"
+            },
+            "created_at": {
+                "$date": getDate()
+            },
+            "updated_at": {
+                "$date": getDate()
+            },
+            "created_by": {
+                "name": "Sonali Patil",
+                "id": 34593,
+                "email": "sonali.patil@bizongo.com"
+            },
+            "updated_by": {
+                "name": "Abhay Kumar Muni",
+                "id": 34007,
+                "email": "abhay@bizongo.com"
+            }
+        };
+    } else return null;
+}
+
 
 function generateSliderProduct(id, name, category_id, material, type, design, mrp, pack_size) {
 
@@ -60,7 +140,7 @@ function generateSliderProduct(id, name, category_id, material, type, design, mr
                     "name": "Type",
                     "qc_enabled": true,
                     "type": "basic",
-                    "value_options": ["Slipper", "Clogs", "Shoes", "Sandals", "Slipon","Lace-Up","Flip Flops"],
+                    "value_options": ["Slipper", "Clogs", "Shoes", "Sandals", "Slipon", "Lace-Up", "Flip Flops"],
                     "value": `${type.trim()}`
                 }, {
                     "active": true,
@@ -72,7 +152,7 @@ function generateSliderProduct(id, name, category_id, material, type, design, mr
                     "type": "basic",
                     "value_options": [],
                     "value": `${design.trim()}`
-                },{
+                }, {
                     "active": true,
                     "data_type": "number",
                     "id": 863,
@@ -125,7 +205,7 @@ function generateSliderProduct(id, name, category_id, material, type, design, mr
     else return null;
 }
 
-function mensTopwear(id, name, category_id, material, color, size, design, mrp, pack_size){
+function mensTopwear(id, name, category_id, material, color, size, design, mrp, pack_size) {
     let packsize = pack_size ? parseInt(pack_size) : 1;
     if (category_id === '1052') {
         return {
@@ -168,7 +248,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                     "type": "basic",
                     "unit_id": null,
                     "value_options": ["Cotton", "100%Cotton"],
-                    "value":`${material}`
+                    "value": `${material}`
                 }, {
                     "active": true,
                     "data_type": "list_of_strings",
@@ -178,8 +258,8 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                     "qc_enabled": false,
                     "type": "basic",
                     "unit_id": null,
-                    "value_options": ["Black", "Brown", "Green", "Grey", "Maroon", "Mustard", "Navy", "Pink", "Purple", "Orange", "Coral", "Peach", "Yellow", "RED", "White", "mix","Melange Grey", "Deep Red", "Deep Olive", "Brick Orange", "Neon Yellow", "Neon Orange", "Neon Blue"],
-                    "value":`${color}`
+                    "value_options": ["Black", "Brown", "Green", "Grey", "Maroon", "Mustard", "Navy", "Pink", "Purple", "Orange", "Coral", "Peach", "Yellow", "RED", "White", "mix", "Melange Grey", "Deep Red", "Deep Olive", "Brick Orange", "Neon Yellow", "Neon Orange", "Neon Blue"],
+                    "value": `${color}`
                 }, {
                     "active": true,
                     "data_type": "list_of_strings",
@@ -189,8 +269,8 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                     "qc_enabled": false,
                     "type": "basic",
                     "unit_id": null,
-                    "value_options": ["36", "38", "40", "42", "44","M","XL","XXL","L"],
-                    "value":`${size}`
+                    "value_options": ["36", "38", "40", "42", "44", "M", "XL", "XXL", "L"],
+                    "value": `${size}`
                 }, {
                     "active": true,
                     "data_type": "free_text",
@@ -201,7 +281,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                     "type": "basic",
                     "unit_id": null,
                     "value_options": [],
-                    "value":`${design}`
+                    "value": `${design}`
                 }, {
                     "active": true,
                     "data_type": "number",
@@ -319,7 +399,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
                     "value_options": ["Black", "Coral", "Green", "Navy", "Peach", "Red", "White", "Wine", "Yellow", "Mustard", "Pink", "Grey", "Blue", "Fuchsia", "Maroon", "Peach", "Turquoise", "Beige", "Sky Blue"],
                     "value": `${color.trim()}`
                 }, {
-                    "active":true,
+                    "active": true,
                     "data_type": "number",
                     "id": 863,
                     "mandatory": true,
@@ -371,7 +451,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
     else return null;
 }
 
-function generateDenimsProduct(id, name, category_id, color, design, fabric, size, pack_size) {
+function generateDenimsProduct(id, name, category_id, color, design, fabric, size, mrp, pack_size) {
     let packsize = pack_size ? parseInt(pack_size) : 1;
 
     if (category_id === '1048')
@@ -380,7 +460,7 @@ function generateDenimsProduct(id, name, category_id, color, design, fabric, siz
                 "$numberLong": `${id}`
             },
             "name": `${name}`,
-            "product_hash": `|cid:1078|type:SPECIFICATION-3:${color}-133:${design}-339:28-861:${fabric}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "product_hash": `|cid:1114|type:SPECIFICATION-3:${color}-133:${design}-339:28-861:${fabric}|type:UOM-Pack Size:${packsize}-Pieces|`,
             "category_id": {
                 "$numberLong": "1048"
             },
@@ -388,71 +468,33 @@ function generateDenimsProduct(id, name, category_id, color, design, fabric, siz
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1078"
+                "$numberLong": "1114"
             },
-            "templates": [{
-                "name": "Units of Measure",
-                "is_default": false,
-                "type": "UOM",
-                "attributes": [{
-                    "name": "Pack Size",
-                    "unit": "Pieces",
-                    "unit_for_price_calculation": "Pieces",
-                    "use_for_price_calculation": true,
-                    "value": packsize
-                }]
-            }, {
-                "name": "Specification",
-                "is_default": false,
-                "type": "SPECIFICATION",
-                "attributes": [{
-                    "active": true,
-                    "data_type": "list_of_strings",
-                    "id": 3,
-                    "mandatory": true,
-                    "name": "Color",
-                    "qc_enabled": false,
-                    "type": "basic",
-                    "value_options": ["Black", "Charcoal", "Beige", "Brown", "Khakee", "Navy", "Olive", "Silver", "Royal Blue", "Sky Blue", "mix", "MULTI"],
-                    "value": `${color}`
-                }, {
-                    "active": true,
-                    "data_type": "list_of_strings",
-                    "id": 339,
-                    "mandatory": true,
-                    "name": "Size",
-                    "qc_enabled": false,
-                    "type": "basic",
-                    "value_options": ["28", "30", "32", "34", "36"],
-                    "value": `${size}`
-                }, {
-                    "active": true,
-                    "data_type": "list_of_strings",
-                    "id": 861,
-                    "mandatory": true,
-                    "name": "Fabric - Dobby",
-                    "qc_enabled": false,
-                    "type": "basic",
-                    "value_options": ["Cotton Dobby", "Dobby Checks", "Cotton Yarn Dye", "Cotton Knit", "Satin", "Satin Check", "Satin Print", "Satin with 5% Poly", "Jeans", "Denims"],
-                    "value": `${fabric}`
-                }, {
-                    "active": true,
-                    "data_type": "free_text",
-                    "id": 133,
-                    "mandatory": true,
-                    "name": "Design Code",
-                    "qc_enabled": false,
-                    "type": "basic",
-                    "value_options": [],
-                    "value": `${design}`
-                }]
-            }],
+            "templates": [
+                {
+                    "name":"Units of Measure","is_default":false,"type":"UOM",
+                    "attributes":[
+                        {"value": `${packsize}`,"name":"Pack Size","unit":"Pieces","unit_for_price_calculation":"Pieces","use_for_price_calculation":true}
+                    ]
+                },
+                {
+                    "name":"Specification","is_default":false,"type":"SPECIFICATION",
+                    "attributes":[
+                        {"value": `${color}`,"mandatory":true,"name":"Color","type":"basic","qc_enabled":false,"value_options":["Black","Charcoal","Beige","Brown","Khakee","Navy","Olive","Silver","Royal Blue","Sky Blue","mix","MULTI","Indigo","Dark Grey","Mid Blue"],"active":true,"id":3,"data_type":"list_of_strings","unit_id":null},
+                        {"value": `${size}`,"mandatory":true,"name":"Size","type":"basic","qc_enabled":false,"value_options":["28","30","32","34","36","38","40","42","44","26"],"active":true,"id":339,"data_type":"list_of_strings","unit_id":null},
+                        {"value": `${fabric}`,"mandatory":false,"name":"Fabric - Dobby","type":"basic","qc_enabled":false,"value_options":["Cotton Dobby","Dobby Checks","Cotton Yarn Dye","Cotton Knit","Satin","Satin Check","Satin Print","Satin with 5% Poly","Jeans","Denims","Dobby Poly","Heavy Knits","Twill","Cotton Knit with 5% poly","Dobby"],"active":true,"id":861,"data_type":"list_of_strings","unit_id":null},
+                        {"value": `${design}`,"mandatory":true,"name":"Design Code","type":"basic","qc_enabled":false,"value_options":[],"active":true,"id":133,"data_type":"free_text","unit_id":null},{"mandatory":true,"name":"Material","type":"basic","qc_enabled":false,"value_options":["Cotton","Cotton Dobby","Dobby Checks","Cotton Yarn Dye","Cotton Knit","Satin","Satin Check","Satin Print","Satin with 5% Poly","Jeans","Denims","Heavy Knits","Twill","Cotton Knit with 5% poly","Dobby","Dobby Poly"],"active":true,"id":10,"data_type":"list_of_strings","unit_id":null},
+                        {"value": `${mrp}`,"mandatory":true,"name":"MRP","type":"basic","qc_enabled":false,"value_options":[],"active":true,"id":863,"data_type":"number","unit_id":null}
+                    ]
+                }
+            ]
+            ,
             "is_combo": false,
             "is_ppe": false,
             "sku_type": "direct",
             "sku_code": `BZ-SKU-0${id}`,
             "category_template_version": {
-                "$numberLong": "8"
+                "$numberLong": "15"
             },
             "pack_size": {
                 "unit": "Pieces",
@@ -467,10 +509,10 @@ function generateDenimsProduct(id, name, category_id, color, design, fabric, siz
                 "$numberLong": "1"
             },
             "created_at": {
-                "$date": "2021-03-18T05:50:18.821Z"
+                "$date": getDate()
             },
             "updated_at": {
-                "$date": "2021-03-18T05:50:18.902Z"
+                "$date": getDate()
             },
             "created_by": {
                 "name": "Sonali Patil",
@@ -490,131 +532,131 @@ function generateDenimsProduct(id, name, category_id, color, design, fabric, siz
 function generateSunglassesProducts(id, name, design, brand, color, pack_size) {
     let packsize = pack_size ? parseInt(pack_size) : 1;
 
-    if(category_id === '1044'){
+    if (category_id === '1044') {
         return {
             "_id": {
                 "$numberLong": `${id}`
-        },
-        "name": `${name}`,
-        "product_hash": `|cid:1033|type:SPECIFICATION-133:${design}-4:${brand}-3:${color}|type:UOM-Pack Size:${packsize}-Pieces|`,
-        "category_id": {
-            "$numberLong": "1044"
-        },
-        "tenant_id": {
-            "$numberLong": "1"
-        },
-        "category_template_id": {
-            "$numberLong": "1033"
-        },
-        "templates": [{
-            "name": "Units of Measure",
-            "is_default": false,
-            "type": "UOM",
-            "attributes": [{
-                "name": "Pack Size",
+            },
+            "name": `${name}`,
+            "product_hash": `|cid:1033|type:SPECIFICATION-133:${design}-4:${brand}-3:${color}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "category_id": {
+                "$numberLong": "1044"
+            },
+            "tenant_id": {
+                "$numberLong": "1"
+            },
+            "category_template_id": {
+                "$numberLong": "1033"
+            },
+            "templates": [{
+                "name": "Units of Measure",
+                "is_default": false,
+                "type": "UOM",
+                "attributes": [{
+                    "name": "Pack Size",
+                    "unit": "Pieces",
+                    "unit_for_price_calculation": "Pieces",
+                    "use_for_price_calculation": true,
+                    "value": 1
+                }]
+            }, {
+                "name": "Specification",
+                "is_default": false,
+                "type": "SPECIFICATION",
+                "attributes": [{
+                    "active": true,
+                    "data_type": "free_text",
+                    "id": 133,
+                    "mandatory": true,
+                    "name": "Design Code",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "value": `${design}`
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 4,
+                    "mandatory": false,
+                    "name": "Brand Name",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["Vinus", "Dhingra"],
+                    "value": `${brand}`
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 3,
+                    "mandatory": false,
+                    "name": "Color",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["Mix"],
+                    "value": `${color}`
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 339,
+                    "mandatory": false,
+                    "name": "Size",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["M"]
+                }, {
+                    "active": true,
+                    "data_type": "free_text",
+                    "id": 721,
+                    "mandatory": false,
+                    "name": "Description",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": []
+                }]
+            }],
+            "is_combo": false,
+            "is_ppe": false,
+            "sku_type": "direct",
+            "sku_code": `BZ-SKU-0${id}`,
+            "category_template_version": {
+                "$numberLong": "3"
+            },
+            "pack_size": {
                 "unit": "Pieces",
-                "unit_for_price_calculation": "Pieces",
-                "use_for_price_calculation": true,
-                "value": 1
-            }]
-        }, {
-            "name": "Specification",
-            "is_default": false,
-            "type": "SPECIFICATION",
-            "attributes": [{
-                "active": true,
-                "data_type": "free_text",
-                "id": 133,
-                "mandatory": true,
-                "name": "Design Code",
-                "qc_enabled": false,
-                "type": "basic",
-                "value_options": [],
-                "value": `${design}`
-            }, {
-                "active": true,
-                "data_type": "list_of_strings",
-                "id": 4,
-                "mandatory": false,
-                "name": "Brand Name",
-                "qc_enabled": false,
-                "type": "basic",
-                "value_options": ["Vinus", "Dhingra"],
-                "value": `${brand}`
-            }, {
-                "active": true,
-                "data_type": "list_of_strings",
-                "id": 3,
-                "mandatory": false,
-                "name": "Color",
-                "qc_enabled": false,
-                "type": "basic",
-                "value_options": ["Mix"],
-                "value": `${color}`
-            }, {
-                "active": true,
-                "data_type": "list_of_strings",
-                "id": 339,
-                "mandatory": false,
-                "name": "Size",
-                "qc_enabled": false,
-                "type": "basic",
-                "value_options": ["M"]
-            }, {
-                "active": true,
-                "data_type": "free_text",
-                "id": 721,
-                "mandatory": false,
-                "name": "Description",
-                "qc_enabled": false,
-                "type": "basic",
-                "value_options": []
-            }]
-        }],
-        "is_combo": false,
-        "is_ppe": false,
-        "sku_type": "direct",
-        "sku_code": `BZ-SKU-0${id}`,
-        "category_template_version": {
-            "$numberLong": "3"
-        },
-        "pack_size": {
-            "unit": "Pieces",
-            "name": "pack size",
-            "value": {
-                "$numberLong": `${packsize}`
+                "name": "pack size",
+                "value": {
+                    "$numberLong": `${packsize}`
+                }
+            },
+            "status": "approved",
+            "product_update_status": "update_not_required",
+            "version": {
+                "$numberLong": "2"
+            },
+            "created_at": {
+                "$date": getDate()
+            },
+            "updated_at": {
+                "$date": getDate()
+            },
+            "created_by": {
+                "name": "Sonali Patil",
+                "id": 34593,
+                "email": "sonali.patil@bizongo.com"
+            },
+            "updated_by": {
+                "name": "Abbas Dawood",
+                "id": 34155,
+                "email": "abbas.dawood@bizongo.com"
             }
-        },
-        "status": "approved",
-        "product_update_status": "update_not_required",
-        "version": {
-            "$numberLong": "2"
-        },
-        "created_at": {
-            "$date": getDate()
-        },
-        "updated_at": {
-            "$date": getDate()
-        },
-        "created_by": {
-            "name": "Sonali Patil",
-            "id": 34593,
-            "email": "sonali.patil@bizongo.com"
-        },
-        "updated_by": {
-            "name": "Abbas Dawood",
-            "id": 34155,
-            "email": "abbas.dawood@bizongo.com"
-        }
-    };
+        };
     } else return null;
-        
+
 }
 
-function generateBeautyProducts(id, name, category_id, volume, weight, design, brand, type, description, pack_size){
+function generateBeautyProducts(id, name, category_id, volume, weight, design, brand, type, description, pack_size) {
     let packsize = pack_size ? parseInt(pack_size) : 1;
 
-    if(category_id === '316'){
+    if (category_id === '316') {
         // version 6, template id: 1076
         return {
             "_id": {
@@ -751,10 +793,10 @@ function generateBeautyProducts(id, name, category_id, volume, weight, design, b
 
 }
 
-function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pack_size){
+function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pack_size) {
     let packsize = pack_size ? parseInt(pack_size) : 1;
     // console.log(typeof category_id, category_id)
-    if (category_id === '1050'){
+    if (category_id === '1050') {
         return {
             "_id": {
                 "$numberLong": `${id}`
@@ -875,9 +917,9 @@ function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pa
     } else return null;
 }
 
-function generateKidsBottomwear(id, name, category_id, color, size, design, mrp, pack_size){
+function generateKidsBottomwear(id, name, category_id, color, size, design, mrp, pack_size) {
     let packsize = pack_size ? parseInt(pack_size) : 1;
-    if(category_id === '1051'){
+    if (category_id === '1051') {
         return {
             "_id": {
                 "$numberLong": `${id}`
@@ -1007,5 +1049,6 @@ module.exports = {
     generateKidsTopwear: generateKidsTopwear,
     generateKidsBottomwear: generateKidsBottomwear,
     getDate: getDate,
-    getDateForPostge: getDateForPostge
+    getDateForPostge: getDateForPostge,
+    generateLeggingsProduct: generateLeggingsProduct
 };
