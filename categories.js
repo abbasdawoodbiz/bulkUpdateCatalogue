@@ -225,7 +225,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                 "$numberLong": `${id}`
             },
             "name": `${name.trim()}`,
-            "product_hash": `|cid:1087|type:SPECIFICATION-3:${color.trim()}-133:${design.trim()}-339:${size.trim()}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "product_hash": `|cid:1155|type:SPECIFICATION-3:${color.trim()}-133:${design.trim()}-339:${size.trim()}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
             "category_id": {
                 "$numberLong": "1052"
             },
@@ -233,7 +233,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1087"
+                "$numberLong": "1155"
             },
             "templates": [{
                 "name": "Units of Measure",
@@ -270,7 +270,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                     "qc_enabled": false,
                     "type": "basic",
                     "unit_id": null,
-                    "value_options": ["Black", "Brown", "Green", "Grey", "Maroon", "Mustard", "Navy", "Pink", "Purple", "Orange", "Coral", "Peach", "Yellow", "RED", "White", "mix", "Melange Grey", "Deep Red", "Deep Olive", "Brick Orange", "Neon Yellow", "Neon Orange", "Neon Blue"],
+                    "value_options": ["Black", "Brown", "Green", "Grey", "Maroon", "Mustard", "Navy", "Pink", "Purple", "Orange", "Coral", "Peach", "Yellow", "RED", "White", "mix", "Melange Grey", "Deep Red", "Deep Olive", "Brick Orange", "Neon Yellow", "Neon Orange", "Neon Blue", "Royal Blue", "Teal", "Gold", "Flourescent Green", "Pista Green","Sky Blue","Lime","Olive"],
                     "value": `${color}`
                 }, {
                     "active": true,
@@ -281,7 +281,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                     "qc_enabled": false,
                     "type": "basic",
                     "unit_id": null,
-                    "value_options": ["36", "38", "40", "42", "44", "M", "XL", "XXL", "L"],
+                    "value_options": ["36", "38", "40", "42", "44", "M", "XL", "XXL", "L","S"],
                     "value": `${size}`
                 }, {
                     "active": true,
@@ -312,7 +312,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
             "sku_type": "direct",
             "sku_code": `BZ-SKU-0${id}`,
             "category_template_version": {
-                "$numberLong": "5"
+                "$numberLong": "10"
             },
             "pack_size": {
                 "unit": "Pieces",
@@ -1059,7 +1059,7 @@ function generateMensBottomWear(id, name, category_id, color, size, design, mrp,
                 "$numberLong": `${id}`
             },
             "name": `${name}`,
-            "product_hash": `|cid:1081|type:SPECIFICATION-3:${color}-133:${design}-339:${size}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "product_hash": `|cid:1150|type:SPECIFICATION-3:${color}-133:${design}-339:${size}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
             "category_id": {
                 "$numberLong": "1065"
             },
@@ -1067,7 +1067,7 @@ function generateMensBottomWear(id, name, category_id, color, size, design, mrp,
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1081"
+                "$numberLong": "1150"
             },
             "templates": [{
                 "name": "Units of Measure",
@@ -1111,7 +1111,7 @@ function generateMensBottomWear(id, name, category_id, color, size, design, mrp,
                     "name": "Color",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["Deep Red", "Deep Olive", "Brick Orange", "Navy", "Peach", "Grey", "Neon Yellow", "Neon Orange", "Neon Blue", "Black", "Dark Blue", "Indigo", "White", "RED", "Green", "Blue", "Yellow", "Maroon", "Melange Grey"],
+                    "value_options": ["Deep Red", "Deep Olive", "Brick Orange", "Navy", "Peach", "Grey", "Neon Yellow", "Neon Orange", "Neon Blue", "Black", "Dark Blue", "Indigo", "White", "RED", "Green", "Blue", "Yellow", "Maroon", "Melange Grey","Mustard", "Denim","Sky Blue", "Ecru", "Ecru Melange", "Olive"],
                     "value": `${color}`
                 }, {
                     "active": true,
@@ -1140,7 +1140,7 @@ function generateMensBottomWear(id, name, category_id, color, size, design, mrp,
             "sku_type": "direct",
             "sku_code": `BZ-SKU-0${id}`,
             "category_template_version": {
-                "$numberLong": "1"
+                "$numberLong": "3"
             },
             "pack_size": {
                 "unit": "Pieces",
