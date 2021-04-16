@@ -355,7 +355,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
                 "$numberLong": `${id}`
             },
             "name": `${name.trim()}`,
-            "product_hash": `|cid:1096|type:SPECIFICATION-3:${color.trim()}-133:${design.trim()}-339:${size.trim()}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "product_hash": `|cid:1104|type:SPECIFICATION-3:${color.trim()}-133:${design.trim()}-339:${size.trim()}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
             "category_id": {
                 "$numberLong": "1047"
             },
@@ -363,7 +363,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1096"
+                "$numberLong": "1104"
             },
             "templates": [{
                 "name": "Units of Measure",
@@ -408,7 +408,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
                     "name": "Color",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["Black", "Green", "Navy", "Peach", "Red", "White", "Wine", "Yellow", "Mustard", "Pink", "Grey", "Blue", "Fuschia", "Magenta", "Maroon", "Light Green", "Teal", "Fuchsia", "Light Blue", "Mehndi Green", "Rust", "Aqua Blue", "Light Olive", "Dark Grey", "Coral", "Lime Green", "Bottle Green", "Mint Green"],
+                    "value_options": ["Black", "Green", "Navy", "Peach", "Red", "White", "Wine", "Yellow", "Mustard", "Pink", "Grey", "Blue", "Magenta", "Maroon", "Light Green", "Teal", "Fuchsia", "Light Blue", "Mehndi Green", "Rust", "Aqua Blue", "Light Olive", "Dark Grey", "Coral", "Lime Green", "Bottle Green", "Mint Green"],
                     "value": `${color.trim()}`
                 }, {
                     "active": true,
@@ -428,7 +428,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
             "sku_type": "direct",
             "sku_code": `BZ-SKU-0${id}`,
             "category_template_version": {
-                "$numberLong": "11"
+                "$numberLong": "12"
             },
             "pack_size": {
                 "unit": "Pieces",
@@ -814,7 +814,7 @@ function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pa
                 "$numberLong": `${id}`
             },
             "name": `${name}`,
-            "product_hash": `|cid:1052|type:SPECIFICATION-3:${color}-133:${design}-339:${size}-863:${mrp}|type:UOM-Pack Size:1-Pieces|`,
+            "product_hash": `|cid:1120|type:SPECIFICATION-3:${color}-133:${design}-339:${size}-863:${mrp}|type:UOM-Pack Size:1-Pieces|`,
             "category_id": {
                 "$numberLong": "1050"
             },
@@ -822,7 +822,7 @@ function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pa
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1052"
+                "$numberLong": "1120"
             },
             "templates": [{
                 "name": "Units of Measure",
@@ -847,7 +847,7 @@ function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pa
                     "name": "Color",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["Baby Pink", "Black", "Ecru Melange", "Fuchsia", "Grey Melange", "Mauve", "LightGreen", "Lemon", "Mint", "Navy", "OffWhite", "Peach", "Pink", "Purple", "RED", "Sea Green", "Sky Blue", "Turquoise", "White", "Yellow"],
+                    "value_options": ["Baby Pink", "Black", "Ecru Melange", "Fuchsia", "Grey Melange", "Mauve", "LightGreen", "Lemon", "Mint", "Navy", "OffWhite", "Peach", "Pink", "Purple", "RED", "Sea Green", "Sky Blue", "Turquoise", "White", "Yellow","Dark Grey", "Mint", "Pista Green", "Indigo","Green","Grey"],
                     "value": `${color}`
                 }, {
                     "active": true,
@@ -895,7 +895,7 @@ function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pa
             "sku_type": "direct",
             "sku_code": `BZ-SKU-0${id}`,
             "category_template_version": {
-                "$numberLong": "2"
+                "$numberLong": "6"
             },
             "pack_size": {
                 "unit": "Pieces",
