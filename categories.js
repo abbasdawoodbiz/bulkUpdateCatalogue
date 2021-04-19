@@ -1290,6 +1290,236 @@ function generateNightWear(id, name, category_id, color, size, design, mrp, pack
     } else return null;
 }
 
+function generateGenericProduct(id, name, category_id, modelNumber, type, pack_size){
+    let packsize = pack_size ? parseInt(pack_size) : 1;
+
+    let uom = '';
+
+    let category_template_id = 1144;
+    let version = 3;
+
+    switch(category_id){
+        case '1094': uom = 'Pieces'; category_template_id = 1144; version = 3; break;
+        case '1097': uom = 'Kilograms'; category_template_id = 1154; version = 1; break;
+        case '1098': uom = 'Meters'; category_template_id = 1159; version = 1; break;
+    }
+
+    if(category_id === '1094' || category_id === '1097' || category_id === '1098'){
+        return {
+            "_id": {
+                "$numberLong": `${id}`
+            },
+            "name": `${name}`,
+            "product_hash": `|cid:${category_template_id}|type:SPECIFICATION-312:${modelNumber}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "category_id": {
+                "$numberLong": "1094"
+            },
+            "tenant_id": {
+                "$numberLong": "1"
+            },
+            "category_template_id": {
+                "$numberLong": `${category_template_id}`
+            },
+            "templates": [{
+                "name": "Units of Measure",
+                "is_default": false,
+                "type": "UOM",
+                "attributes": [{
+                    "name": "Pack Size",
+                    "unit": `${uom}`,
+                    "unit_for_price_calculation": `${uom}`,
+                    "use_for_price_calculation": true,
+                    "value": 1
+                }]
+            }, {
+                "name": "Specification",
+                "is_default": false,
+                "type": "SPECIFICATION",
+                "attributes": [{
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 9,
+                    "mandatory": false,
+                    "name": "Type",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["Pen"],
+                    "value":`${type}`
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 3,
+                    "mandatory": false,
+                    "name": "Color",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["White", "Black", "Green", "Yellow", "Silver", "Orange", "Natural", "Brown"]
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 4,
+                    "mandatory": false,
+                    "name": "Brand Name",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["Non Branded"]
+                }, {
+                    "active": true,
+                    "data_type": "number",
+                    "id": 1,
+                    "mandatory": false,
+                    "name": "Length",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "unit_id": 1
+                }, {
+                    "active": true,
+                    "data_type": "number",
+                    "id": 5,
+                    "mandatory": false,
+                    "name": "Width",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "unit_id": 1
+                }, {
+                    "active": true,
+                    "data_type": "number",
+                    "id": 19,
+                    "mandatory": false,
+                    "name": "Height",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "unit_id": 1
+                }, {
+                    "active": true,
+                    "data_type": "number",
+                    "id": 138,
+                    "mandatory": false,
+                    "name": "Inner Diameter",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "unit_id": 1
+                }, {
+                    "active": true,
+                    "data_type": "number",
+                    "id": 105,
+                    "mandatory": false,
+                    "name": "Outer Diameter",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "unit_id": 1
+                }, {
+                    "active": true,
+                    "data_type": "number",
+                    "id": 15,
+                    "mandatory": false,
+                    "name": "Volume",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "unit_id": 2
+                }, {
+                    "active": true,
+                    "data_type": "number",
+                    "id": 18,
+                    "mandatory": false,
+                    "name": "Weight",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "unit_id": 3
+                }, {
+                    "active": true,
+                    "data_type": "free_text",
+                    "id": 312,
+                    "mandatory": true,
+                    "name": "Item model number",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "value": `${modelNumber}`
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 10,
+                    "mandatory": false,
+                    "name": "Material",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["PP"]
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 339,
+                    "mandatory": false,
+                    "name": "Size",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["M", "L", "S", "XXL", "Standard", "Any", "Small", "Medium", "Large", "Others", "Free Size", "Subject to availability", "Customized", "Large Square", "Small Square", "38", "40", "42", "44", "32-36", "XXXL", "26"]
+                }, {
+                    "active": true,
+                    "data_type": "number",
+                    "id": 302,
+                    "mandatory": false,
+                    "name": "Voltage",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": []
+                }, {
+                    "active": true,
+                    "data_type": "free_text",
+                    "id": 875,
+                    "mandatory": false,
+                    "name": "Power Rating",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": []
+                }]
+            }],
+            "is_combo": false,
+            "is_ppe": false,
+            "sku_type": "direct",
+            "sku_code": `BZ-SKU-0${id}`,
+            "category_template_version": {
+                "$numberLong": `${version}`
+            },
+            "pack_size": {
+                "unit": `${uom}`,
+                "name": "pack size",
+                "value": {
+                    "$numberLong": `${packsize}`
+                }
+            },
+            "status": "approved",
+            "product_update_status": "update_not_required",
+            "version": {
+                "$numberLong": "1"
+            },
+            "created_at": {
+                "$date": getDate()
+            },
+            "updated_at": {
+                "$date": getDate()
+            },
+            "created_by": {
+                "name": "Mukesh Singh",
+                "id": 34241,
+                "email": "mukesh.singh@bizongo.com"
+            },
+            "updated_by": {
+                "name": "Ishan Purohit",
+                "id": 34114,
+                "email": "ishan.purohit@bizongo.com"
+            }
+        };
+    } else return null;
+}
+
 module.exports = {
     generateSliderProduct: generateSliderProduct,
     generateSunglassesProducts: generateSunglassesProducts,
@@ -1303,5 +1533,6 @@ module.exports = {
     getDateForPostge: getDateForPostge,
     generateLeggingsProduct: generateLeggingsProduct,
     generateMensBottomWear: generateMensBottomWear,
-    generateNightWear: generateNightWear
+    generateNightWear: generateNightWear,
+    generateGenericProduct: generateGenericProduct
 };

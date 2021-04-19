@@ -87,6 +87,9 @@ function createProduct() {
                 case 'beautyProducts': s= categories.generateBeautyProducts(p.id, p.name, p.category_id, p.volume, p.weight, p.design, p.brand, p.type, p.description, p.pack_size); break;
                 case '1065': s = categories.generateMensBottomWear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
                 case '1095': s = categories.generateNightWear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
+                case '1094': s = categories.generateGenericProduct(p.id, p.name, p.category_id, p.model_number, p.type, p.pack_size); break;
+                case '1097': s = categories.generateGenericProduct(p.id, p.name, p.category_id, p.model_number, p.type, p.pack_size); break;
+                case '1098': s = categories.generateGenericProduct(p.id, p.name, p.category_id, p.model_number, p.type, p.pack_size); break;
             }
             console.log('Converted product for ' + p.name);
             return s;
@@ -118,6 +121,8 @@ function createCentreProducts() {
     }
 
     products = _.map(products, p => {
+        console.log(p);
+        let item_code = p.model_number ? p.model_number.trim() : p.design.trim();
 
         let cp = {
             "price":parseFloat(p.price),
@@ -150,7 +155,7 @@ function createCentreProducts() {
             "category_id": {
                 "$numberLong": `${p.category_id}`
             },
-            "item_code": `${p.design.trim()}`,
+            "item_code": `${item_code}`,
             "images": [],
             "active": true,
             "status": "approved",
