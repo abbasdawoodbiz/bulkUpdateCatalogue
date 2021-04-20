@@ -1648,6 +1648,6 @@ module.exports = {
     generateLeggingsProduct: generateLeggingsProduct,
     generateMensBottomWear: generateMensBottomWear,
     generateNightWear: generateNightWear,
-    generateGenericProduct: generateGenericProduct
+    generateGenericProduct: generateGenericProduct,
     generateLadiesNightWear: generateLadiesNightWear
 };
