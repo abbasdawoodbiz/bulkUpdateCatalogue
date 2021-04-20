@@ -814,7 +814,7 @@ function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pa
                 "$numberLong": `${id}`
             },
             "name": `${name}`,
-            "product_hash": `|cid:1120|type:SPECIFICATION-3:${color}-133:${design}-339:${size}-863:${mrp}|type:UOM-Pack Size:1-Pieces|`,
+            "product_hash": `|cid:1163|type:SPECIFICATION-3:${color}-133:${design}-339:${size}-863:${mrp}|type:UOM-Pack Size:1-Pieces|`,
             "category_id": {
                 "$numberLong": "1050"
             },
@@ -822,7 +822,7 @@ function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pa
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1120"
+                "$numberLong": "1163"
             },
             "templates": [{
                 "name": "Units of Measure",
@@ -847,7 +847,7 @@ function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pa
                     "name": "Color",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["Baby Pink", "Black", "Ecru Melange", "Fuchsia", "Grey Melange", "Mauve", "LightGreen", "Lemon", "Mint", "Navy", "OffWhite", "Peach", "Pink", "Purple", "RED", "Sea Green", "Sky Blue", "Turquoise", "White", "Yellow","Dark Grey", "Mint", "Pista Green", "Indigo","Green","Grey"],
+                    "value_options": ["Baby Pink", "Black", "Ecru Melange", "Fuchsia", "Grey Melange", "Mauve", "LightGreen", "Lemon", "Mint", "Navy", "OffWhite", "Peach", "Pink", "Purple", "RED", "Sea Green", "Sky Blue", "Turquoise", "White", "Yellow","Dark Grey", "Mint", "Pista Green", "Indigo","Green","Grey","Mix Color", "Multi"],
                     "value": `${color}`
                 }, {
                     "active": true,
@@ -857,7 +857,7 @@ function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pa
                     "name": "Size",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["6-12M", "12-18M", "18-24M", "2-3Y", "4-5Y", "6-7Y", "8-9Y", "10-11Y", "12-13Y", "14-15Y", "16Y", "38", "40", "42", "44"],
+                    "value_options": ["6-12M", "12-18M", "18-24M", "2-3Y", "4-5Y", "6-7Y", "8-9Y", "10-11Y", "12-13Y", "14-15Y", "16Y", "38", "40", "42", "44","0-6M"],
                     "value": `${size}`
                 }, {
                     "active": true,
@@ -895,7 +895,7 @@ function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pa
             "sku_type": "direct",
             "sku_code": `BZ-SKU-0${id}`,
             "category_template_version": {
-                "$numberLong": "6"
+                "$numberLong": "7"
             },
             "pack_size": {
                 "unit": "Pieces",
@@ -937,7 +937,7 @@ function generateKidsBottomwear(id, name, category_id, color, size, design, mrp,
                 "$numberLong": `${id}`
             },
             "name": `${name}`,
-            "product_hash": `|cid:1086|type:SPECIFICATION-3:${color.trim()}-133:${design.trim()}-339:${size.trim()}-863:${mrp}|type:UOM-Pack Size:1-Pieces|`,
+            "product_hash": `|cid:1091|type:SPECIFICATION-3:${color.trim()}-133:${design.trim()}-339:${size.trim()}-863:${mrp}|type:UOM-Pack Size:1-Pieces|`,
             "category_id": {
                 "$numberLong": `${category_id}`
             },
@@ -945,7 +945,7 @@ function generateKidsBottomwear(id, name, category_id, color, size, design, mrp,
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1086"
+                "$numberLong": "1091"
             },
             "templates": [{
                 "name": "Units of Measure",
@@ -979,7 +979,7 @@ function generateKidsBottomwear(id, name, category_id, color, size, design, mrp,
                     "name": "Color",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["Mint", "RED", "Sky Blue", "Lemon", "Pink", "White", "Peach", "LightGreen", "Baby Pink", "OffWhite", "Ecru Melange"],
+                    "value_options": ["Mint", "RED", "Sky Blue", "Lemon", "Pink", "White", "Peach", "LightGreen", "Baby Pink", "OffWhite", "Ecru Melange", "Navy", "Mustard"],
                     "value": `${color}`
                 }, {
                     "active": true,
@@ -1017,7 +1017,7 @@ function generateKidsBottomwear(id, name, category_id, color, size, design, mrp,
             "sku_type": "direct",
             "sku_code": `BZ-SKU-0${id}`,
             "category_template_version": {
-                "$numberLong": "2"
+                "$numberLong": "3"
             },
             "pack_size": {
                 "unit": "Pieces",
