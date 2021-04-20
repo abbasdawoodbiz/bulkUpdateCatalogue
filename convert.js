@@ -88,6 +88,7 @@ function createProduct() {
                 case '1065': s = categories.generateMensBottomWear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
                 case '1095': s = categories.generateNightWear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
                 case '1094': s = categories.generateGenericProduct(p.id, p.name, p.category_id, p.model_number, p.type, p.pack_size); break;
+                case '1096': s = categories.generateLadiesNightWear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
                 case '1097': s = categories.generateGenericProduct(p.id, p.name, p.category_id, p.model_number, p.type, p.pack_size); break;
                 case '1098': s = categories.generateGenericProduct(p.id, p.name, p.category_id, p.model_number, p.type, p.pack_size); break;
             }
