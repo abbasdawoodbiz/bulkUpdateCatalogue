@@ -1520,6 +1520,120 @@ function generateGenericProduct(id, name, category_id, modelNumber, type, pack_s
     } else return null;
 }
 
+function generateLadiesNightWear(id, name, category_id, color, size, design, mrp, pack_size){
+    let packsize = pack_size ? parseInt(pack_size) : 1;
+    if(category_id === '1096'){
+        return {
+            "_id": {
+                "$numberLong": `${id}`
+            },
+            "name": `${name.trim()}`,
+            "product_hash": `|cid:1166|type:SPECIFICATION-133:${design.trim()}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "category_id": {
+                "$numberLong": "1096"
+            },
+            "tenant_id": {
+                "$numberLong": "1"
+            },
+            "category_template_id": {
+                "$numberLong": "1166"
+            },
+            "templates": [{
+                "name": "Units of Measure",
+                "is_default": false,
+                "type": "UOM",
+                "attributes": [{
+                    "name": "Pack Size",
+                    "unit": "Pieces",
+                    "unit_for_price_calculation": "Pieces",
+                    "use_for_price_calculation": true,
+                    "value": packsize
+                }]
+            }, {
+                "name": "Specification",
+                "is_default": false,
+                "type": "SPECIFICATION",
+                "attributes": [{
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 339,
+                    "mandatory": false,
+                    "name": "Size",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["S", "M", "L", "XXL", "XL", "F"],
+                    "value": `${size.trim()}`
+                }, {
+                    "active": true,
+                    "data_type": "free_text",
+                    "id": 133,
+                    "mandatory": true,
+                    "name": "Design Code",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "value": `${design.trim()}`
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 3,
+                    "mandatory": false,
+                    "name": "Color",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["MULTI", "Mix Color", "Black", "Mustard", "Navy", "Olive", "Mid Blue", "White", "Grey", "Yellow", "Pink"],
+                    "value": `${color.trim()}`
+                }, {
+                    "active": true,
+                    "data_type": "number",
+                    "id": 863,
+                    "mandatory": false,
+                    "name": "MRP",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "value": parseFloat(mrp)
+                }]
+            }],
+            "is_combo": false,
+            "is_ppe": false,
+            "sku_type": "direct",
+            "sku_code": `BZ-SKU-0${id}`,
+            "category_template_version": {
+                "$numberLong": "4"
+            },
+            "pack_size": {
+                "unit": "Pieces",
+                "name": "pack size",
+                "value": {
+                    "$numberLong": `${packsize}`
+                }
+            },
+            "status": "approved",
+            "product_update_status": "update_not_required",
+            "version": {
+                "$numberLong": "1"
+            },
+            "created_at": {
+                "$date": getDate()
+            },
+            "updated_at": {
+                "$date": getDate()
+            },
+            "created_by": {
+                "name": "Sonali Patil",
+                "id": 34593,
+                "email": "sonali.patil@bizongo.com"
+            },
+            "updated_by": {
+                "name": "Sonali Patil",
+                "id": 34593,
+                "email": "sonali.patil@bizongo.com"
+            }
+        };
+    } else return null;
+}
+
 module.exports = {
     generateSliderProduct: generateSliderProduct,
     generateSunglassesProducts: generateSunglassesProducts,
@@ -1535,4 +1649,5 @@ module.exports = {
     generateMensBottomWear: generateMensBottomWear,
     generateNightWear: generateNightWear,
     generateGenericProduct: generateGenericProduct
+    generateLadiesNightWear: generateLadiesNightWear
 };
