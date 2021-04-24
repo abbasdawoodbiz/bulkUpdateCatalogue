@@ -5,13 +5,14 @@ let csvToJson = require('convert-csv-to-json');
 let _ = require('lodash');
 const yargs = require('yargs');
 let categories = require('./categories');
+const { delay } = require('lodash');
 
 /** Initialise default options */
 
 const options = yargs
     .usage('Usage: -c -u')
     .option('c', { alias: 'category', describe: "skip", type: 'string', demandOption: false })
-    .option('u', {alias: 'update-price', describe: "use only if updating wrong vms entries", type: 'string'})
+    .option('u', { alias: 'update-price', describe: "use only if updating wrong vms entries", type: 'string' })
     .argv;
 
 
@@ -21,9 +22,9 @@ function readFile(filename, format) {
     return fs.readFileSync(path, 'utf-8');
 }
 
-function writePlainTextFile(csv, filename, format){
-    fs.writeFile(__dirname + `/output/${filename}.${format}`, csv, (err)=>{
-        if(err){
+function writePlainTextFile(csv, filename, format) {
+    fs.writeFile(__dirname + `/output/${filename}.${format}`, csv, (err) => {
+        if (err) {
             console.error(err);
         } else {
             console.log('done!');
@@ -51,13 +52,15 @@ function writeMigrationFile(json, filename, format) {
     });
 }
 
-function createProduct() {
-    if(options.category !== 'skip'){
+async function createProduct() {
+    if (options.category !== 'skip') {
 
         let products = getJsonFromCsv('input');
-        
+
+        console.log(`Starting import of ${products.length} products`);
+
         products = _.map(products, p => {
-            
+
             var s;
 
             /**
@@ -75,16 +78,16 @@ function createProduct() {
                 Men's bottomwear	1065
              */
 
-            switch(p.category_id){
-                case '1010': s = categories.generateSliderProduct(p.id, p.name, p.category_id, p.material, p.type,p.design, p.mrp); break;
+            switch (p.category_id) {
+                case '1010': s = categories.generateSliderProduct(p.id, p.name, p.category_id, p.material, p.type, p.design, p.mrp); break;
                 case '1041': s = categories.generateLeggingsProduct(p.id, p.name, p.category_id, p.color, p.size, p.design, p.material, p.mrp, p.pack_size); break;
                 case '1044': s = categories.generateSunglassesProducts(p.id, p.name, p.category_id, p.design, p.brand, p.color); break;
-                case '1047': s= categories.generateTopsAndTunicsProduct(p.id, p.name, p.category_id, p.size, p.design, p.color, p.mrp); break;
-                case '1048': s= categories.generateDenimsProduct(p.id, p.name, p.category_id, p.color, p.design, p.fabric, p.size, p.mrp, p.pack_size); break;
+                case '1047': s = categories.generateTopsAndTunicsProduct(p.id, p.name, p.category_id, p.size, p.design, p.color, p.mrp); break;
+                case '1048': s = categories.generateDenimsProduct(p.id, p.name, p.category_id, p.color, p.design, p.fabric, p.size, p.mrp, p.pack_size); break;
                 case '1050': s = categories.generateKidsTopwear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
                 case '1051': s = categories.generateKidsBottomwear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
-                case '1052': s= categories.mensTopwear(p.id, p.name, p.category_id, p.material, p.color, p.size, p.design, p.mrp); break;
-                case 'beautyProducts': s= categories.generateBeautyProducts(p.id, p.name, p.category_id, p.volume, p.weight, p.design, p.brand, p.type, p.description, p.pack_size); break;
+                case '1052': s = categories.mensTopwear(p.id, p.name, p.category_id, p.material, p.color, p.size, p.design, p.mrp); break;
+                case 'beautyProducts': s = categories.generateBeautyProducts(p.id, p.name, p.category_id, p.volume, p.weight, p.design, p.brand, p.type, p.description, p.pack_size); break;
                 case '1065': s = categories.generateMensBottomWear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
                 case '1095': s = categories.generateNightWear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
                 case '1094': s = categories.generateGenericProduct(p.id, p.name, p.category_id, p.model_number, p.type, p.pack_size); break;
@@ -95,29 +98,29 @@ function createProduct() {
             console.log('Converted product for ' + p.name);
             return s;
         });
-        
+
         writeMigrationFile(products, 'products');
-    } else if (options['update-price']){
+    } else if (options['update-price']) {
         console.log('just revising prices..');
     }
 }
 
-function createCentreProducts() {
+async function createCentreProducts() {
 
     let products = [];
     let updatePrices = [];
     let up = "";
-    if (options['update-price'] === 'update'){
+    if (options['update-price'] === 'update') {
         console.log('just revising prices..');
         updatePrices = getJsonFromCsv('prices');
         _.each(updatePrices, p => {
-        up = up + `\n
+            up = up + `\n
             UPDATE vms.client_vendor_products
             SET exfactory_price = ${p.price}
             WHERE client_vendor_detail_id = ${p.client_vendor_id} AND product_id = ${p.cpid};
         `
-    });
-    } else if(options.category !== 'skip'){
+        });
+    } else if (options.category !== 'skip') {
         products = getJsonFromCsv('input');
     }
 
@@ -126,10 +129,10 @@ function createCentreProducts() {
         let item_code = p.model_number ? p.model_number.trim() : p.design.trim();
 
         let cp = {
-            "price":parseFloat(p.price),
+            "price": parseFloat(p.price),
             "clientVendorDetailId": parseFloat(p.client_vendor_id),
-            "hsn_code":parseFloat(p.hsn_code),
-            "hsn_id":parseFloat(p.hsn_id),
+            "hsn_code": parseFloat(p.hsn_code),
+            "hsn_id": parseFloat(p.hsn_id),
             "_id": {
                 "$numberLong": `${p.cpid}`
             },
@@ -247,12 +250,12 @@ function createCentreProducts() {
                 );`
     });
 
-    
 
-    writePlainTextFile(str,"taxationinsert", "sql");
-    writePlainTextFile(prices,"vmsinsert", "sql");
-    if(up && up.length > 0){
-        writePlainTextFile(up,"vmsupdate","sql");
+
+    writePlainTextFile(str, "taxationinsert", "sql");
+    writePlainTextFile(prices, "vmsinsert", "sql");
+    if (up && up.length > 0) {
+        writePlainTextFile(up, "vmsupdate", "sql");
     }
 
     // Remove the price key from the centreProducts array of objects

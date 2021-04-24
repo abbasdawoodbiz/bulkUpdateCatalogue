@@ -12,9 +12,9 @@ To run this project, you will need:
 ## Running the script
 - Clone this repo using github
 - Install dependencies by running `npm i`
-- Once dependencies are installed, use the command `node convert.js -c <category name>`
+- Once dependencies are installed, use the command `node convert.js`
 - Category name has to be from one of the supported categories, and is a mandatory input
 - Output files will be created in the `output` dir
 
 ## Console Help
-Run `node convert.js` to see supported command line parameters and categories for which the script is designed. Categories will be updated with every new category bulk upload request.
+Run `node convert.js` to see supported command line parameters. Categories will be updated with every new category bulk upload request.
