@@ -209,7 +209,7 @@ async function createCentreProducts() {
                 (
                     '${categories.getDateForPostge()}', 
                     '${categories.getDateForPostge()}', 
-                    '{7,971}', 
+                    '{4123,4491,5609,6527,9198}', 
                     NULL, 
                     true, 
                     ${p.price}, 
