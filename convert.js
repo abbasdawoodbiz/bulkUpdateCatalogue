@@ -44,6 +44,8 @@ function returnBizongoBillingAddressIdMaps(vendorId){
         case 'M': addressMaps = '{4123,4491,5609,6527,9198}'; break;
         case 'K': addressMaps = '{7876,9254,7680,7874,7875,13544}'; break;
     }
+
+    return addressMaps;
 }
 
 
