@@ -7,12 +7,15 @@ const yargs = require('yargs');
 let categories = require('./categories');
 const { delay } = require('lodash');
 
+let sptplBillingAddresses = '';
+
 /** Initialise default options */
 
 const options = yargs
     .usage('Usage: -c -u')
     .option('c', { alias: 'category', describe: "skip", type: 'string', demandOption: false })
     .option('u', { alias: 'update-price', describe: "use only if updating wrong vms entries", type: 'string' })
+    .option('v', { alias: 'vendor', describe: "use on of G,M,D,K", type: 'string', demandOption: true })
     .argv;
 
 
@@ -30,6 +33,17 @@ function writePlainTextFile(csv, filename, format) {
             console.log('done!');
         }
     });
+}
+
+function returnBizongoBillingAddressIdMaps(vendorId){
+    let addressMaps = '{}';
+
+    switch(vendorId){
+        case 'G': addressMaps = '{7,971}'; break;
+        case 'D': addressMaps = '{11546,12920,5617,13908}'; break;
+        case 'M': addressMaps = '{4123,4491,5609,6527,9198}'; break;
+        case 'K': addressMaps = '{7876,9254,7680,7874,7875,13544}'; break;
+    }
 }
 
 
@@ -53,7 +67,14 @@ function writeMigrationFile(json, filename, format) {
 }
 
 async function createProduct() {
-    if (options.category !== 'skip') {
+
+    if(options.vendor){
+        sptplBillingAddresses = returnBizongoBillingAddressIdMaps(options.vendor)
+    } else {
+        console.error('Stopping further process.. vendor is mandatory, use of the options');
+    }
+
+    if (options.category !== 'skip' && options.vendor) {
 
         let products = getJsonFromCsv('input');
 
@@ -209,7 +230,7 @@ async function createCentreProducts() {
                 (
                     '${categories.getDateForPostge()}', 
                     '${categories.getDateForPostge()}', 
-                    '{4123,4491,5609,6527,9198}', 
+                    ${sptplBillingAddresses}, 
                     NULL, 
                     true, 
                     ${p.price}, 
