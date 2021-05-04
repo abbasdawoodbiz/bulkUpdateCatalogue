@@ -43,6 +43,7 @@ function returnBizongoBillingAddressIdMaps(vendorId){
         case 'D': addressMaps = '{11546,12920,5617,13908}'; break;
         case 'M': addressMaps = '{4123,4491,5609,6527,9198}'; break;
         case 'K': addressMaps = '{7876,9254,7680,7874,7875,13544}'; break;
+        default: console.error('Cannot proceed, vendor ID is mandatory'); break;
     }
 
     return addressMaps;
