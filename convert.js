@@ -233,7 +233,7 @@ async function createCentreProducts() {
                 (
                     '${categories.getDateForPostge()}', 
                     '${categories.getDateForPostge()}', 
-                    ${sptplBillingAddresses}, 
+                    '${sptplBillingAddresses}', 
                     NULL, 
                     true, 
                     ${p.price}, 
