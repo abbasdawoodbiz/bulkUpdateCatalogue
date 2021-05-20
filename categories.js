@@ -1059,7 +1059,8 @@ function generateMensBottomWear(id, name, category_id, color, size, design, mrp,
                 "$numberLong": `${id}`
             },
             "name": `${name}`,
-            "product_hash": `|cid:1150|type:SPECIFICATION-3:${color}-133:${design}-339:${size}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "product_hash": `|cid:
+            |type:SPECIFICATION-3:${color}-133:${design}-339:${size}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
             "category_id": {
                 "$numberLong": "1065"
             },
