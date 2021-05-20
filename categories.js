@@ -225,7 +225,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                 "$numberLong": `${id}`
             },
             "name": `${name.trim()}`,
-            "product_hash": `|cid:1180|type:SPECIFICATION-3:${color.trim()}-133:${design.trim()}-339:${size.trim()}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "product_hash": `|cid:1184|type:SPECIFICATION-3:${color.trim()}-133:${design.trim()}-339:${size.trim()}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
             "category_id": {
                 "$numberLong": "1052"
             },
@@ -233,7 +233,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1180"
+                "$numberLong": "1184"
             },
             "templates": [{
                 "name": "Units of Measure",
@@ -270,7 +270,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                     "qc_enabled": false,
                     "type": "basic",
                     "unit_id": null,
-                    "value_options": ["Black", "Brown", "Green", "Grey", "Maroon", "Mustard", "Navy", "Pink", "Purple", "Orange", "Coral", "Peach", "Yellow", "RED", "White", "mix", "Melange Grey", "Deep Red", "Deep Olive", "Brick Orange", "Neon Yellow", "Neon Orange", "Neon Blue", "Royal Blue", "Teal", "Gold", "Flourescent Green", "Pista Green","Sky Blue","Lime","Olive","DARK NEVY", "Blue","BEIGE", "T. BLUE", "NAVY", "BLACK", "DARK GREY", "CREAM", "WHITE", "GREY"],
+                    "value_options": ["Black", "Brown", "Green", "Grey", "Maroon", "Mustard", "Navy", "Pink", "Purple", "Orange", "Coral", "Peach", "Yellow", "RED", "White", "mix", "Melange Grey", "Deep Red", "Deep Olive", "Brick Orange", "Neon Yellow", "Neon Orange", "Neon Blue", "Royal Blue", "Teal", "Gold", "Flourescent Green", "Pista Green","Sky Blue","Lime","Olive","DARK NEVY", "Blue","BEIGE", "T. BLUE", "NAVY", "BLACK", "DARK GREY", "CREAM", "WHITE", "GREY", "MULTICOLOR"],
                     "value": `${color}`
                 }, {
                     "active": true,
