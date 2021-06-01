@@ -233,7 +233,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1184"
+                "$numberLong": "1189"
             },
             "templates": [{
                 "name": "Units of Measure",
@@ -270,7 +270,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                     "qc_enabled": false,
                     "type": "basic",
                     "unit_id": null,
-                    "value_options": ["Black", "Brown", "Green", "Grey", "Maroon", "Mustard", "Navy", "Pink", "Purple", "Orange", "Coral", "Peach", "Yellow", "RED", "White", "mix", "Melange Grey", "Deep Red", "Deep Olive", "Brick Orange", "Neon Yellow", "Neon Orange", "Neon Blue", "Royal Blue", "Teal", "Gold", "Flourescent Green", "Pista Green","Sky Blue","Lime","Olive","DARK NEVY", "Blue","BEIGE", "T. BLUE", "NAVY", "BLACK", "DARK GREY", "CREAM", "WHITE", "GREY", "MULTICOLOR"],
+                    "value_options": ["AF BLUE", "Black", "Brown", "DARK PINK", "Green", "Grey", "KHAKI", "LEMON", "LIGHT PISTA", "LIGHT YELLOW", "Maroon", "Mustard", "Navy", "NAVY BLUE", "PISTA", "Pink", "Purple", "Orange", "Coral", "Peach", "Yellow", "RED", "White", "mix", "Melange Grey", "Deep Red", "Deep Olive", "Brick Orange", "Neon Yellow", "Neon Orange", "Neon Blue", "Royal Blue", "Teal", "Gold", "Flourescent Green", "Pista Green","Sky Blue","Lime","Olive","DARK NEVY", "Blue","BEIGE", "T. BLUE", "NAVY", "BLACK", "DARK GREY", "CREAM", "WHITE", "GREY", "MULTICOLOR", "STONE GREEN", "TQ"],
                     "value": `${color}`
                 }, {
                     "active": true,
@@ -281,7 +281,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                     "qc_enabled": false,
                     "type": "basic",
                     "unit_id": null,
-                    "value_options": ["36", "38", "40", "42", "44", "M", "XL", "XXL", "L","S"],
+                    "value_options": ["36", "38", "40", "42", "44", "3XL", "M", "XL", "XXL", "L","S"],
                     "value": `${size}`
                 }, {
                     "active": true,
@@ -408,7 +408,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
                     "name": "Color",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["Black", "Green", "Navy", "Peach", "Red", "White", "Wine", "Yellow", "Mustard", "Pink", "Grey", "Blue", "Magenta", "Maroon", "Light Green", "Teal", "Fuchsia", "Light Blue", "Mehndi Green", "Rust", "Aqua Blue", "Light Olive", "Dark Grey", "Coral", "Lime Green", "Bottle Green", "Mint Green", "Pastel Green", "Light Pink"],
+                    "value_options": ["Black", "Green", "Navy", "Peach", "Red", "White", "Wine", "Yellow", "Mustard", "Pink", "Grey", "Blue", "Magenta", "Maroon", "Light Green", "Teal", "Fuchsia", "Light Blue", "MEHNDI", "Mehndi Green", "Rust", "Aqua Blue", "Light Olive", "Dark Grey", "Coral", "Lime Green", "Bottle Green", "Mint Green", "Pastel Green", "Light Pink"],
                     "value": `${color.trim()}`
                 }, {
                     "active": true,
@@ -847,7 +847,7 @@ function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pa
                     "name": "Color",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["Baby Pink", "Black", "Ecru Melange", "Fuchsia", "Grey Melange", "Mauve", "LightGreen", "Lemon", "Mint", "Navy", "OffWhite", "Peach", "Pink", "Purple", "RED", "Sea Green", "Sky Blue", "Turquoise", "White", "Yellow","Dark Grey", "Mint", "Pista Green", "Indigo","Green","Grey","Mix Color", "Multi"],
+                    "value_options": ["Baby Pink", "Black", "Ecru Melange", "Fuchsia", "Grey Melange", "Mauve", "LightGreen", "Lemon", "Mint", "Navy", "OffWhite", "Peach", "Pink", "Purple", "RED", "Sea Green", "SKY", "Sky Blue", "Turquoise", "White", "Yellow","Dark Grey", "Mint", "Pista Green", "Indigo","Green","Grey","Mix Color", "Multi"],
                     "value": `${color}`
                 }, {
                     "active": true,
