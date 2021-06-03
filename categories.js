@@ -822,7 +822,7 @@ function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pa
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1163"
+                "$numberLong": "1197"
             },
             "templates": [{
                 "name": "Units of Measure",
@@ -847,7 +847,7 @@ function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pa
                     "name": "Color",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["Baby Pink", "Black", "Ecru Melange", "Fuchsia", "Grey Melange", "Mauve", "LightGreen", "Lemon", "Mint", "Navy", "OffWhite", "Peach", "Pink", "Purple", "RED", "Sea Green", "SKY", "Sky Blue", "Turquoise", "White", "Yellow","Dark Grey", "Mint", "Pista Green", "Indigo","Green","Grey","Mix Color", "Multi"],
+                    "value_options": ["Baby Pink", "Black", "Dark Grey", "Ecru Melange", "Fuchsia", "Green", "Grey", "Grey Melange", "Indigo", "Lemon", "LightGreen", "LIGHTYELLOW", "Mauve", "Mint", "Mix Color", "Multi", "Navy", "OffWhite", "Peach", "Pink", "PISTA", "Pista Green", "Purple", "RED", "Sea Green", "SKY", "Sky Blue", "Turquoise", "White", "Yellow"],
                     "value": `${color}`
                 }, {
                     "active": true,
@@ -857,7 +857,7 @@ function generateKidsTopwear(id, name, category_id, color, size, design, mrp, pa
                     "name": "Size",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["6-12M", "12-18M", "18-24M", "2-3Y", "4-5Y", "6-7Y", "8-9Y", "10-11Y", "12-13Y", "14-15Y", "16Y", "38", "40", "42", "44","0-6M"],
+                    "value_options": ["6-12M", "12-18M", "18-24M", "2-3Y", "4-5Y", "6-7Y", "8-9Y", "10-11Y", "12-13Y", "14-15Y", "16Y", "38", "40", "42", "44", "0-6M", "2", "4", "6", "8", "10", "12", "14", "16"],
                     "value": `${size}`
                 }, {
                     "active": true,
