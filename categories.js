@@ -233,7 +233,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1189"
+                "$numberLong": "1196"
             },
             "templates": [{
                 "name": "Units of Measure",
@@ -270,7 +270,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                     "qc_enabled": false,
                     "type": "basic",
                     "unit_id": null,
-                    "value_options": ["AF BLUE", "Black", "Brown", "DARK PINK", "Green", "Grey", "KHAKI", "LEMON", "LIGHT PISTA", "LIGHT YELLOW", "Maroon", "Mustard", "Navy", "NAVY BLUE", "PISTA", "Pink", "Purple", "Orange", "Coral", "Peach", "Yellow", "RED", "White", "mix", "Melange Grey", "Deep Red", "Deep Olive", "Brick Orange", "Neon Yellow", "Neon Orange", "Neon Blue", "Royal Blue", "Teal", "Gold", "Flourescent Green", "Pista Green","Sky Blue","Lime","Olive","DARK NEVY", "Blue","BEIGE", "T. BLUE", "NAVY", "BLACK", "DARK GREY", "CREAM", "WHITE", "GREY", "MULTICOLOR", "STONE GREEN", "TQ"],
+                    "value_options": ["AF BLUE", "Black", "Brown", "DARK PINK", "Green", "Grey", "KHAKI", "LEMON", "LIGHT PISTA", "LIGHT YELLOW", "Maroon", "Mustard", "Navy", "NAVY BLUE", "PISTA", "Pink", "Purple", "Orange", "Coral", "Peach", "Yellow", "RED", "White", "mix", "Melange Grey", "Deep Red", "Deep Olive", "Brick Orange", "Neon Yellow", "Neon Orange", "Neon Blue", "Royal Blue", "Teal", "Gold", "Flourescent Green", "Pista Green", "Sky Blue", "Lime", "Olive", "DARK NEVY", "Blue", "BEIGE", "T. BLUE", "DARK GREY", "CREAM", "MULTICOLOR", "STONE GREEN", "TQ", "Aqua Blue", "ASH", "BISCUIT", "Carbon Black", "Charcoal", "CHARCOL", "Dark Blue", "DARK TINT", "DUSTY ROSE", "FAWN", "HUNTER", "ICE", "Indigo", "INK BLUE", "Light Blue", "Light Brown", "Light Green", "LIGHT GREY", "LIGHT INDIGO", "Mehndi Green", "Mid Blue", "PERIWINKLE", "PHONE", "RAMA GREEN", "Rust", "Sea Green", "Silver", "STONE", "MEHNDI", "LIGHT YELLOW\t", "Light Olive", "SKY", "LIGHT SALMON", "DARK SALMON", "KHAKHI", "NEON PINK"],
                     "value": `${color}`
                 }, {
                     "active": true,
