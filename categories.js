@@ -217,7 +217,7 @@ function generateSliderProduct(id, name, category_id, material, type, design, mr
     else return null;
 }
 
-function mensTopwear(id, name, category_id, material, color, size, design, mrp, pack_size) {
+function mensTopwear(id, name, category_id, material, color, size, design, brand, mrp, pack_size) {
     let packsize = pack_size ? parseInt(pack_size) : 1;
     if (category_id === '1052') {
         return {
@@ -225,7 +225,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                 "$numberLong": `${id}`
             },
             "name": `${name.trim()}`,
-            "product_hash": `|cid:1184|type:SPECIFICATION-3:${color.trim()}-133:${design.trim()}-339:${size.trim()}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "product_hash": `|cid:1184|type:SPECIFICATION-3:${color.trim()}-133:${design.trim()}-339:${size.trim()}-863:${mrp}-4:${brand.trim()}|type:UOM-Pack Size:${packsize}-Pieces|`,
             "category_id": {
                 "$numberLong": "1052"
             },
@@ -233,7 +233,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1200"
+                "$numberLong": "1208"
             },
             "templates": [{
                 "name": "Units of Measure",
@@ -270,7 +270,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                     "qc_enabled": false,
                     "type": "basic",
                     "unit_id": null,
-                    "value_options": ["AF BLUE", "Aqua Blue", "ASH", "BEIGE", "BISCUIT", "Black", "Blue", "Brick Orange", "Brown", "Carbon Black", "Charcoal", "CHARCOL", "Coral", "CREAM", "Dark Blue", "DARK GREY", "DARK NEVY", "DARK PINK", "DARK SALMON", "DARK TINT", "Deep Olive", "Deep Red", "Denim", "DUSTY ROSE", "Ecru", "Ecru Melange", "FAWN", "Flourescent Green", "Gold", "Green", "Grey", "HUNTER", "ICE", "Indigo", "INK BLUE", "KHAKHI", "KHAKI", "LEMON", "Light Blue", "Light Brown", "Light Green", "LIGHT GREY", "LIGHT INDIGO", "Light Olive", "LIGHT PISTA", "LIGHT SALMON", "LIGHT YELLOW", "Lime", "Maroon", "MEHNDI", "Mehndi Green", "Melange Grey", "Mid Blue", "mix", "MULTICOLOR", "Mustard", "Navy", "NAVY BLUE", "Neon Blue", "Neon Orange", "NEON PINK", "Neon Yellow", "Olive", "Orange", "Peach", "PERIWINKLE", "PHONE", "Pink", "PISTA", "Pista Green", "Purple", "RAMA GREEN", "RED", "Royal Blue", "Rust", "Sea Green", "Silver", "SKY", "Sky Blue", "STONE", "STONE GREEN", "T. BLUE", "Teal", "TQ", "White", "Yellow"],
+                    "value_options": ["AF BLUE", "Aqua Blue", "ASH", "Beige", "BEIGE", "BISCUIT", "Black", "BLACK", "Blue", "BLUE", "Brick Orange", "Brown", "BROWN", "Carbon Black", "Charcoal", "CHARCOL", "Coral", "Cream", "CREAM", "Dark Blue", "Dark Grey", "DARK GREY", "DARK NEVY", "DARK PINK", "DARK SALMON", "DARK TINT", "Deep Olive", "Deep Red", "DS", "DUSTY ROSE", "FAWN", "Flourescent Green", "Green", "GREEN", "GREY", "Grey", "HUNTER", "ICE", "Indigo", "INK BLUE", "KHAKHI", "KHAKI", "Lemon", "LEMON", "Light Blue", "Light Brown", "Light Green", "LIGHT GREEN", "LIGHT GREY", "LIGHT INDIGO", "Light Olive", "LIGHT PISTA", "LIGHT SALMON", "LIGHT YELLOW\t", "Lime", "MAROON", "MEHNDI", "Mehndi Green", "Melange Grey", "Mid Blue", "MINT", "mix", "Multicolor", "MUSTARD", "NAVY", "Navy Blue", "NAVY BLUE", "Neon Blue", "Neon Orange", "NEON PINK", "Neon Yellow", "Olive", "Orange", "PEACH", "PERIWINKLE", "PHONE", "PINK", "PISTA", "Pista Green", "RAMA GREEN", "RED", "Royal Blue", "Rust", "RUST", "Sea Green", "SEA GREEN", "Silver", "SKY", "Sky Blue", "SKY BLUE", "STONE", "STONE GREEN", "T. BLUE", "Teal", "TQ", "Turquoise", "White", "WHITE", "Yellow", "YELLOW"],
                     "value": `${color}`
                 }, {
                     "active": true,
@@ -305,6 +305,17 @@ function mensTopwear(id, name, category_id, material, color, size, design, mrp, 
                     "unit_id": null,
                     "value_options": [],
                     "value": parseFloat(mrp)
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 4,
+                    "mandatory": false,
+                    "name": "Brand Name",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "unit_id": null,
+                    "value_options": ["ARCHER", "OC MEN", "ONE CENTRE", "SUPER DP", "SUPER DP JUNIOR", "Y-RAL", "JOE POLLEN"],
+                    "value": `${brand}`
                 }]
             }],
             "is_combo": false,
@@ -1112,7 +1123,7 @@ function generateMensBottomWear(id, name, category_id, color, size, design, mrp,
                     "name": "Color",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["AF BLUE", "Aqua Blue", "ASH", "BEIGE", "BISCUIT", "Black", "Blue", "Brick Orange", "Brown", "Carbon Black", "Charcoal", "CHARCOL", "Coral", "CREAM", "Dark Blue", "DARK GREY", "DARK NEVY", "DARK PINK", "DARK SALMON", "DARK TINT", "Deep Olive", "Deep Red", "Denim", "DUSTY ROSE", "Ecru", "Ecru Melange", "FAWN", "Flourescent Green", "Gold", "Green", "Grey", "HUNTER", "ICE", "Indigo", "INK BLUE", "KHAKHI", "KHAKI", "LEMON", "Light Blue", "Light Brown", "Light Green", "LIGHT GREY", "LIGHT INDIGO", "Light Olive", "LIGHT PISTA", "LIGHT SALMON", "LIGHT YELLOW", "Lime", "Maroon", "MEHNDI", "Mehndi Green", "Melange Grey", "Mid Blue", "mix", "MULTICOLOR", "Mustard", "Navy", "NAVY BLUE", "Neon Blue", "Neon Orange", "NEON PINK", "Neon Yellow", "Olive", "Orange", "Peach", "PERIWINKLE", "PHONE", "Pink", "PISTA", "Pista Green", "Purple", "RAMA GREEN", "RED", "Royal Blue", "Rust", "Sea Green", "Silver", "SKY", "Sky Blue", "STONE", "STONE GREEN", "T. BLUE", "Teal", "TQ", "White", "Yellow"],
+                    "value_options": ["AF BLUE", "Aqua Blue", "ASH", "BEIGE", "BISCUIT", "Black", "Blue", "Brick Orange", "Brown", "Carbon Black", "Charcoal", "CHARCOL", "Coral", "CREAM", "Dark Blue", "DARK GREY", "DARK NEVY", "DARK PINK", "DARK SALMON", "DARK TINT", "Deep Olive", "Deep Red", "Denim", "DUSTY ROSE", "Ecru", "Ecru Melange", "FAWN", "Flourescent Green", "Gold", "Green", "Grey", "HUNTER", "ICE", "ICEBLUE", "Indigo", "INK BLUE", "IVORY", "KHAKHI", "KHAKI", "LEMON", "Light Blue", "Light Brown", "Light Green", "LIGHT GREY", "LIGHT INDIGO", "Light Olive", "LIGHT PISTA", "LIGHT SALMON", "LIGHT YELLOW", "LIGHTGREY", "Lime", "Maroon", "MEHNDI", "Mehndi Green", "Melange Grey", "Mid Blue", "MINT", "mix", "MULTICOLOR", "Mustard", "Navy", "NAVY BLUE", "NAVYBLUE", "Neon Blue", "Neon Orange", "NEON PINK", "Neon Yellow", "Olive", "Orange", "Peach", "PEACOCKGREEN", "PEACOCKGREY", "PERIWINKLE", "PHONE", "Pink", "PISTA", "Pista Green", "Purple", "RAMA GREEN", "RED", "Royal Blue", "Rust", "Sea Green", "Silver", "SKY", "Sky Blue", "SKYBLUE", "STONE", "STONE GREEN", "T. BLUE", "Teal", "TQ", "White", "Yellow"],
                     "value": `${color}`
                 }, {
                     "active": true,
