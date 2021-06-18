@@ -217,7 +217,7 @@ function generateSliderProduct(id, name, category_id, material, type, design, mr
     else return null;
 }
 
-function mensTopwear(id, name, category_id, material, color, size, design, brand, mrp, pack_size) {
+function mensTopwear(id, name, category_id, material, color, size, design, brand, style, mrp, pack_size) {
     let packsize = pack_size ? parseInt(pack_size) : 1;
     if (category_id === '1052') {
         return {
@@ -225,7 +225,7 @@ function mensTopwear(id, name, category_id, material, color, size, design, brand
                 "$numberLong": `${id}`
             },
             "name": `${name.trim()}`,
-            "product_hash": `|cid:1184|type:SPECIFICATION-3:${color.trim()}-133:${design.trim()}-339:${size.trim()}-863:${mrp}-4:${brand.trim()}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "product_hash": `|cid:1184|type:SPECIFICATION-3:${color.trim()}-133:${design.trim()}-339:${size.trim()}-863:${mrp}|type:UOM-Pack Size:${packsize}-Pieces|`,
             "category_id": {
                 "$numberLong": "1052"
             },
@@ -316,6 +316,17 @@ function mensTopwear(id, name, category_id, material, color, size, design, brand
                     "unit_id": null,
                     "value_options": ["ARCHER", "OC MEN", "ONE CENTRE", "SUPER DP", "SUPER DP JUNIOR", "Y-RAL", "JOE POLLEN"],
                     "value": `${brand}`
+                }, {
+                    "active": true,
+                    "data_type": "free_text",
+                    "id": 884,
+                    "mandatory": false,
+                    "name": "Style Number",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "unit_id": null,
+                    "value_options": [],
+                    "value": `${style}`
                 }]
             }],
             "is_combo": false,
