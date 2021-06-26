@@ -385,7 +385,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1170"
+                "$numberLong": "1210"
             },
             "templates": [{
                 "name": "Units of Measure",
@@ -410,7 +410,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
                     "name": "Size",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["S", "M", "L", "XS", "XL", "XXL", "XXXL"],
+                    "value_options": ["S", "M", "L", "XS", "XL", "XXL", "XXXL", "3XL", "24", "26", "28", "30", "32", "34", "36", "38", "40"],
                     "value": `${size.trim()}`
                 }, {
                     "active": true,
@@ -430,7 +430,7 @@ function generateTopsAndTunicsProduct(id, name, category_id, size, design, color
                     "name": "Color",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["Black", "Green", "Navy", "Peach", "Red", "White", "Wine", "Yellow", "Mustard", "Pink", "Grey", "Blue", "Magenta", "Maroon", "Light Green", "Teal", "Fuchsia", "Light Blue", "MEHNDI", "Mehndi Green", "Rust", "Aqua Blue", "Light Olive", "Dark Grey", "Coral", "Lime Green", "Bottle Green", "Mint Green", "Pastel Green", "Light Pink"],
+                    "value_options": ["Green", "Navy", "Peach", "Red", "White", "Wine", "Yellow", "Mustard", "Pink", "Grey", "Blue", "Magenta", "Maroon", "Light Green", "Teal", "Fuchsia", "Light Blue", "Mehndi Green", "Rust", "Aqua Blue", "Light Olive", "Dark Grey", "Coral", "Lime Green", "Bottle Green", "Mint Green", "Pastel Green", "Light Pink", "BLACK", "Black", "BLUE", "BOTTLE GREEN", "CELADON", "CREAM", "DARK BLUE", "DARK GREY", "DARK PEACH", "DREAM BLUE", "GREEN", "GREY", "IVORY", "LEMON", "LIGHT BLUE", "LIGHT GREEN", "LIGHT GREY", "LIGHT PEACH", "MAROON", "MELANGE", "MELANGE GREY", "MULTI", "MUSTARD", "NAVY", "NAVY BLUE", "OLIVE", "PEACH", "PINK", "PISTA", "PURPLE", "RED", "ROSE", "ROYAL BLUE", "STEEL BLUE", "VIOLET", "WHITE", "YELLOW"],
                     "value": `${color.trim()}`
                 }, {
                     "active": true,
@@ -1198,6 +1198,121 @@ function generateMensBottomWear(id, name, category_id, color, size, design, mrp,
     } else return null;
 }
 
+function generateunisextoys(id, name, category_id, age, design, mrp, pack_size){
+    let packsize = pack_size ? parseInt(pack_size) : 1;
+    if(category_id === '1063'){
+        return {
+            "_id": {
+                "$numberLong": `${id}`
+            },
+            "name": `${name}`,
+            "product_hash": `|cid:
+            |type:SPECIFICATION-133:${design}-863:${mrp}-866:${age}|type:UOM-Pack Size:${packsize}-Pieces|`,
+            "category_id": {
+                "$numberLong": "1063"
+            },
+            "tenant_id": {
+                "$numberLong": "1"
+            },
+            "category_template_id": {
+                "$numberLong": "1070"
+            },
+            "templates": [{
+                "name": "Units of Measure",
+                "is_default": false,
+                "type": "UOM",
+                "attributes": [{
+                    "name": "Pack Size",
+                    "unit": "Pieces",
+                    "unit_for_price_calculation": "Pieces",
+                    "use_for_price_calculation": true,
+                    "value": `${pack_size}`
+                }]
+            }, {
+                "name": "Specification",
+                "is_default": false,
+                "type": "SPECIFICATION",
+                "attributes": [{
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 10,
+                    "mandatory": false,
+                    "name": "Material",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["Plastic"]
+                }, {
+                    "active": true,
+                    "data_type": "list_of_strings",
+                    "id": 866,
+                    "mandatory": true,
+                    "name": "Age(Years)",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": ["4-7"],
+                    "value": `${age}`
+                }, {
+                    "active": true,
+                    "data_type": "number",
+                    "id": 863,
+                    "mandatory": true,
+                    "name": "MRP",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "value": parseFloat(mrp)
+                }, {
+                    "active": true,
+                    "data_type": "free_text",
+                    "id": 133,
+                    "mandatory": true,
+                    "name": "Design Code",
+                    "qc_enabled": false,
+                    "type": "basic",
+                    "value_options": [],
+                    "value": `${design}`
+                }]
+            }],
+            "is_combo": false,
+            "is_ppe": false,
+            "sku_type": "direct",
+            "sku_code": `BZ-SKU-0${id}`,
+            "category_template_version": {
+                "$numberLong": "1"
+            },
+            "pack_size": {
+                "unit": "Pieces",
+                "name": "pack size",
+                "value": {
+                    "$numberLong": `${packsize}`
+                }
+            },
+            "status": "approved",
+            "product_update_status": "update_not_required",
+            "version": {
+                "$numberLong": "1"
+            },
+            "created_at": {
+                "$date": getDate()
+            },
+            "updated_at": {
+                "$date": getDate()
+            },
+            "created_by": {
+                "name": "Sonali Patil",
+                "id": 34593,
+                "email": "sonali.patil@bizongo.com"
+            },
+            "updated_by": {
+                "name": "Sonali Patil",
+                "id": 34593,
+                "email": "sonali.patil@bizongo.com"
+            }
+        };
+
+    } else return null;
+}
+
 function generateNightWear(id, name, category_id, color, size, design, mrp, pack_size){
     let packsize = pack_size ? parseInt(pack_size) : 1;
     if(category_id === '1095'){
@@ -1559,7 +1674,7 @@ function generateLadiesNightWear(id, name, category_id, color, size, design, mrp
                 "$numberLong": "1"
             },
             "category_template_id": {
-                "$numberLong": "1166"
+                "$numberLong": "1209"
             },
             "templates": [{
                 "name": "Units of Measure",
@@ -1584,7 +1699,7 @@ function generateLadiesNightWear(id, name, category_id, color, size, design, mrp
                     "name": "Size",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["S", "M", "L", "XXL", "XL", "F"],
+                    "value_options": ["S", "M", "L", "XXL", "XL", "F", "24", "26", "28", "30", "32", "34", "36", "40", "3XL"],
                     "value": `${size.trim()}`
                 }, {
                     "active": true,
@@ -1604,7 +1719,7 @@ function generateLadiesNightWear(id, name, category_id, color, size, design, mrp
                     "name": "Color",
                     "qc_enabled": false,
                     "type": "basic",
-                    "value_options": ["MULTI", "Mix Color", "Black", "Mustard", "Navy", "Olive", "Mid Blue", "White", "Grey", "Yellow", "Pink"],
+                    "value_options": ["MULTI", "Mix Color", "Black", "Mustard", "Navy", "Olive", "Mid Blue", "White", "Grey", "Yellow", "Pink", "BLUE", "BOTTLE GREEN", "CELADON", "CREAM", "DARK BLUE", "BLACK", "DARK GREY", "DARK PEACH", "DREAM BLUE", "GREEN", "GREY", "IVORY", "LEMON", "LIGHT BLUE", "LIGHT GREEN", "LIGHT GREY", "LIGHT PEACH", "MAROON", "MELANGE", "MELANGE GREY", "MUSTARD", "NAVY", "NAVY BLUE", "OLIVE", "PEACH", "PINK", "PISTA", "PURPLE", "RED", "ROSE", "ROYAL BLUE", "STEEL BLUE", "VIOLET", "WHITE", "YELLOW"],
                     "value": `${color.trim()}`
                 }, {
                     "active": true,
@@ -1672,5 +1787,6 @@ module.exports = {
     generateMensBottomWear: generateMensBottomWear,
     generateNightWear: generateNightWear,
     generateGenericProduct: generateGenericProduct,
-    generateLadiesNightWear: generateLadiesNightWear
+    generateLadiesNightWear: generateLadiesNightWear,
+    generateunisextoys: generateunisextoys
 };

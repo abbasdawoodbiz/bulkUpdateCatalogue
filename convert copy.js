@@ -5,22 +5,38 @@ let csvToJson = require('convert-csv-to-json');
 let _ = require('lodash');
 const yargs = require('yargs');
 let categories = require('./categories');
-const { delay } = require('lodash');
-// let vmshelper = require('./vmshelper');
-// let taxhelper = require('./taxhelper');
-const { createTax } = require('./taxhelper');
-const { createVms } = require('./vmshelper');
+const {
+    delay
+} = require('lodash');
+
 let sptplBillingAddresses = '';
 
 /** Initialise default options */
 
 const options = yargs
     .usage('Usage: -c -u')
-    .option('c', { alias: 'category', describe: "skip", type: 'string', demandOption: false })
-    .option('u', { alias: 'update-price', describe: "use only if updating wrong vms entries", type: 'string' })
-    .option('v', { alias: 'vendor', describe: "use on of G,M,D,K", type: 'string', demandOption: true })
-    .option('p', { alias: 'createVms', describe: "create entries for each centre product in vms", type: 'boolean' })
-    .option('t', { alias: 'createTax', describe: "create entries for each centre product in taxation", type: 'boolean' })
+    .option('c', {
+        alias: 'category',
+        describe: "skip",
+        type: 'string',
+        demandOption: false
+    })
+    .option('u', {
+        alias: 'update-price',
+        describe: "use only if updating wrong vms entries",
+        type: 'string'
+    })
+    .option('v', {
+        alias: 'vendor',
+        describe: "use on of G,M,D,K",
+        type: 'string',
+        demandOption: true
+    })
+    .option('p', {
+        alias: 'create-price',
+        describe: "create entries for each centre product in vms and taxation",
+        type: 'boolean'
+    })
     .argv;
 
 
@@ -44,11 +60,21 @@ function returnBizongoBillingAddressIdMaps(vendorId) {
     let addressMaps = '{}';
 
     switch (vendorId) {
-        case 'G': addressMaps = '{7,971}'; break;
-        case 'D': addressMaps = '{11546,12920,5617,13908}'; break;
-        case 'M': addressMaps = '{4123,4491,5609,6527,9198}'; break;
-        case 'K': addressMaps = '{7876,9254,7680,7874,7875,13544}'; break;
-        default: console.error('Cannot proceed, vendor ID is mandatory'); break;
+        case 'G':
+            addressMaps = '{7,971}';
+            break;
+        case 'D':
+            addressMaps = '{11546,12920,5617,13908}';
+            break;
+        case 'M':
+            addressMaps = '{4123,4491,5609,6527,9198}';
+            break;
+        case 'K':
+            addressMaps = '{7876,9254,7680,7874,7875,13544}';
+            break;
+        default:
+            console.error('Cannot proceed, vendor ID is mandatory');
+            break;
     }
 
     return addressMaps;
@@ -76,6 +102,8 @@ function writeMigrationFile(json, filename, format) {
 
 async function createProduct() {
 
+
+
     if (options.category !== 'skip' && options.vendor) {
 
         let products = getJsonFromCsv('input');
@@ -102,22 +130,54 @@ async function createProduct() {
              */
 
             switch (p.category_id) {
-                case '1010': s = categories.generateSliderProduct(p.id, p.name, p.category_id, p.material, p.type, p.design, p.mrp); break;
-                case '1041': s = categories.generateLeggingsProduct(p.id, p.name, p.category_id, p.color, p.size, p.design, p.material, p.mrp, p.pack_size); break;
-                case '1044': s = categories.generateSunglassesProducts(p.id, p.name, p.category_id, p.design, p.brand, p.color); break;
-                case '1047': s = categories.generateTopsAndTunicsProduct(p.id, p.name, p.category_id, p.size, p.design, p.color, p.mrp); break;
-                case '1048': s = categories.generateDenimsProduct(p.id, p.name, p.category_id, p.color, p.design, p.fabric, p.size, p.mrp, p.pack_size); break;
-                case '1050': s = categories.generateKidsTopwear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
-                case '1051': s = categories.generateKidsBottomwear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
-                case '1052': s = categories.mensTopwear(p.id, p.name, p.category_id, p.material, p.color, p.size, p.design, p.brand, p.style, p.mrp); break;
-                case 'beautyProducts': s = categories.generateBeautyProducts(p.id, p.name, p.category_id, p.volume, p.weight, p.design, p.brand, p.type, p.description, p.pack_size); break;
-                case '1065': s = categories.generateMensBottomWear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
-                case '1095': s = categories.generateNightWear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
-                case '1094': s = categories.generateGenericProduct(p.id, p.name, p.category_id, p.model_number, p.type, p.pack_size); break;
-                case '1096': s = categories.generateLadiesNightWear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size); break;
-                case '1097': s = categories.generateGenericProduct(p.id, p.name, p.category_id, p.model_number, p.type, p.pack_size); break;
-                case '1098': s = categories.generateGenericProduct(p.id, p.name, p.category_id, p.model_number, p.type, p.pack_size); break;
-                case '1063': s = categories.generateunisextoys(p.id, p.name, p.category_id, p.age, p.mrp, p.design, p.pack_size); break;
+                case '1010':
+                    s = categories.generateSliderProduct(p.id, p.name, p.category_id, p.material, p.type, p.design, p.mrp);
+                    break;
+                case '1041':
+                    s = categories.generateLeggingsProduct(p.id, p.name, p.category_id, p.color, p.size, p.design, p.material, p.mrp, p.pack_size);
+                    break;
+                case '1044':
+                    s = categories.generateSunglassesProducts(p.id, p.name, p.category_id, p.design, p.brand, p.color);
+                    break;
+                case '1047':
+                    s = categories.generateTopsAndTunicsProduct(p.id, p.name, p.category_id, p.size, p.design, p.color, p.mrp);
+                    break;
+                case '1048':
+                    s = categories.generateDenimsProduct(p.id, p.name, p.category_id, p.color, p.design, p.fabric, p.size, p.mrp, p.pack_size);
+                    break;
+                case '1050':
+                    s = categories.generateKidsTopwear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size);
+                    break;
+                case '1051':
+                    s = categories.generateKidsBottomwear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size);
+                    break;
+                case '1052':
+                    s = categories.mensTopwear(p.id, p.name, p.category_id, p.material, p.color, p.size, p.design, p.brand, p.style, p.mrp);
+                    break;
+                case 'beautyProducts':
+                    s = categories.generateBeautyProducts(p.id, p.name, p.category_id, p.volume, p.weight, p.design, p.brand, p.type, p.description, p.pack_size);
+                    break;
+                case '1065':
+                    s = categories.generateMensBottomWear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size);
+                    break;
+                case '1095':
+                    s = categories.generateNightWear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size);
+                    break;
+                case '1094':
+                    s = categories.generateGenericProduct(p.id, p.name, p.category_id, p.model_number, p.type, p.pack_size);
+                    break;
+                case '1096':
+                    s = categories.generateLadiesNightWear(p.id, p.name, p.category_id, p.color, p.size, p.design, p.mrp, p.pack_size);
+                    break;
+                case '1097':
+                    s = categories.generateGenericProduct(p.id, p.name, p.category_id, p.model_number, p.type, p.pack_size);
+                    break;
+                case '1098':
+                    s = categories.generateGenericProduct(p.id, p.name, p.category_id, p.model_number, p.type, p.pack_size);
+                    break;
+                case '1063':
+                    s = categories.generateunisextoys(p.id, p.name, p.category_id, p.age, p.mrp, p.design, p.pack_size);
+                    break;
             }
             console.log('Converted product for ' + p.name);
             return s;
@@ -295,6 +355,85 @@ async function createCentreProducts() {
     writeMigrationFile(products, 'centreproducts');
 }
 
+async function createPrice() {
+    console.log('initialised create price function');
+    console.log('read the input file');
+
+    let prices = getJsonFromCsv('prices');
+
+    console.log('generate the taxation sql');
+
+    let str = "";
+    _.each(prices, p => {
+        str = str + `\n
+        INSERT INTO taxation.centre_product_hsn 
+            (
+                created_at, 
+                updated_at, 
+                active, 
+                centre_product_id, 
+                hsn_code, 
+                hsn_id, 
+                tenant_id
+            ) 
+        VALUES
+            (
+                '${categories.getDateForPostge()}', 
+                '${categories.getDateForPostge()}', 
+                true, 
+                ${p.cpid}, 
+                '${p.hsn_code}', 
+                ${p.hsn_id}, 
+                1
+            );`
+    });
+
+
+    console.log('create the file taxation.sql');
+    writePlainTextFile(str, "taxationinsert", "sql");
+
+    str = "";
+
+    console.log('generate vms sql');
+    _.each(prices, p => {
+        str = str + `\n
+            INSERT INTO vms.client_vendor_products 
+                (
+                    created_at, 
+                    updated_at, 
+                    billing_address_ids, 
+                    deliverable_location_ids, 
+                    is_active, 
+                    exfactory_price, 
+                    hsn_master_id, 
+                    lead_time, 
+                    product_id, 
+                    product_name, 
+                    currency, 
+                    client_vendor_detail_id
+                ) 
+            VALUES
+                (
+                    '${categories.getDateForPostge()}', 
+                    '${categories.getDateForPostge()}', 
+                    '${sptplBillingAddresses}', 
+                    NULL, 
+                    true, 
+                    ${p.price}, 
+                    ${p.hsn_id},
+                    NULL, 
+                    ${p.cpid}, 
+                    '${p.name.trim()}', 
+                    'INR', 
+                    ${parseFloat(p.client_vendor_id)}
+                );`
+    });
+
+    console.log('create the file vms.sql');
+    writePlainTextFile(str, "vmsinsert", "sql");
+
+}
+
 function init() {
     console.log('initialised init function');
     if (options.vendor) {
@@ -302,22 +441,13 @@ function init() {
     } else {
         console.error('Stopping further process.. vendor is mandatory, use of the options');
     }
-    if (options['createVms']) {
-        console.log('initialised vmsoptions');
-        createVms();
-    }
-    if (options['createTax']) {
-        console.log('initialised taxoptions');
-        createTax();
-    }
-    else {
-        console.error('Stopping further process.. bad code');
+    if (options['create-price']) {
+        console.log('initialised options');
+        createPrice();
+    } else {
+        createProduct();
+        createCentreProducts();
     }
 }
 
 init();
-
-module.exports = {
-    getJsonFromCsv : getJsonFromCsv,
-    writePlainTextFile : writePlainTextFile
-};
