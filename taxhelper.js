@@ -1,9 +1,16 @@
 
+const chelper = require('./convert.js');
+let _ = require('lodash');
+let categories = require('./categories');
+
+
+
+
 function createTax() {
     console.log('initialised create tax function');
     console.log('read the input file');
 
-    let prices = getJsonFromCsv('prices');
+    let prices = chelper.getJsonFromCsv('prices');
 
     console.log('generate the taxation sql');
 
@@ -33,7 +40,7 @@ function createTax() {
     });
 
     console.log('create the file taxation.sql');
-    writePlainTextFile(str, "taxationinsert", "sql");
+    chelper.writePlainTextFile(str, "taxationinsert", "sql");
     
 }
 

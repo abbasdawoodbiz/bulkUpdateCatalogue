@@ -1,10 +1,15 @@
 
+const chelper = require('./convert.js');
+let _ = require('lodash');
+let categories = require('./categories');
+
+
 async function createVms() {
     console.log('initialised create vms function');
     console.log('read the input file');
 
-    let prices = getJsonFromCsv('prices');
-
+    let prices = chelper.getJsonFromCsv('prices');
+    let sptplBillingAddresses = chelper.returnBizongoBillingAddressIdMaps(chelper.options.vendor);
     console.log('generate the vms sql');
 
     let str = "";
@@ -43,7 +48,7 @@ async function createVms() {
     });
 
     console.log('create the file vms.sql');
-    writePlainTextFile(str, "vmsinsert", "sql");
+    chelper.writePlainTextFile(str, "vmsinsert", "sql");
 
 }
 

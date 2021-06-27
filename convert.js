@@ -10,6 +10,7 @@ const { delay } = require('lodash');
 // let taxhelper = require('./taxhelper');
 const { createTax } = require('./taxhelper');
 const { createVms } = require('./vmshelper');
+const { option } = require('yargs');
 let sptplBillingAddresses = '';
 
 /** Initialise default options */
@@ -30,15 +31,7 @@ function readFile(filename, format) {
     return fs.readFileSync(path, 'utf-8');
 }
 
-function writePlainTextFile(csv, filename, format) {
-    fs.writeFile(__dirname + `/output/${filename}.${format}`, csv, (err) => {
-        if (err) {
-            console.error(err);
-        } else {
-            console.log('done!');
-        }
-    });
-}
+
 
 function returnBizongoBillingAddressIdMaps(vendorId) {
     let addressMaps = '{}';
@@ -54,8 +47,7 @@ function returnBizongoBillingAddressIdMaps(vendorId) {
     return addressMaps;
 }
 
-
-function getJsonFromCsv(filename, formatValueByType) {
+    function getJsonFromCsv(filename, formatValueByType) {
     let path = `/${filename}.csv`;
     if (formatValueByType) {
         return csvToJson.fieldDelimiter(',').formatValueByType().getJsonFromCsv(__dirname + path)
@@ -63,6 +55,18 @@ function getJsonFromCsv(filename, formatValueByType) {
         return csvToJson.fieldDelimiter(',').getJsonFromCsv(__dirname + path)
     }
 }
+    
+    function writePlainTextFile(csv, filename, format) {
+    fs.writeFile(__dirname + `/output/${filename}.${format}`, csv, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log('done!');
+        }
+    });
+}
+
+
 
 function writeMigrationFile(json, filename, format) {
     fs.writeFile(__dirname + `/output/${filename}.json`, JSON.stringify(json), (err) => {
@@ -295,10 +299,16 @@ async function createCentreProducts() {
     writeMigrationFile(products, 'centreproducts');
 }
 
+module.exports.getJsonFromCsv = getJsonFromCsv;
+module.exports.writePlainTextFile = writePlainTextFile;
+module.exports.returnBizongoBillingAddressIdMaps = returnBizongoBillingAddressIdMaps;
+module.exports.options = options;
+
 function init() {
     console.log('initialised init function');
     if (options.vendor) {
-        sptplBillingAddresses = returnBizongoBillingAddressIdMaps(options.vendor)
+        sptplBillingAddresses = returnBizongoBillingAddressIdMaps(options.vendor);
+        // console.log(module);
     } else {
         console.error('Stopping further process.. vendor is mandatory, use of the options');
     }
@@ -317,7 +327,3 @@ function init() {
 
 init();
 
-module.exports = {
-    getJsonFromCsv : getJsonFromCsv,
-    writePlainTextFile : writePlainTextFile
-};
