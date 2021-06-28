@@ -1,6 +1,6 @@
 
 let _ = require('lodash');
-let categories = require('../categories');
+let categories = require('./categories');
 
 function createTax(prices) {
     console.log('generate the taxation sql');
