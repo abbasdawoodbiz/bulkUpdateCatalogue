@@ -2,7 +2,7 @@ let fs = require('fs');
 let csvToJson = require('convert-csv-to-json');
 
 function getJsonFromCsv(filename, formatValueByType) {
-    let path = `/${filename}.csv`;
+    let path = `./${filename}.csv`;
     if (formatValueByType) {
         return csvToJson.fieldDelimiter(',').formatValueByType().getJsonFromCsv(__dirname + path)
     } else {
@@ -14,7 +14,7 @@ function writeOutputFile(fileData, filename, format) {
 
     let data = format === 'json' ? JSON.stringify(fileData) : fileData;
 
-    fs.writeFile(__dirname + `/output/${filename}.${format}`, data, (err) => {
+    fs.writeFile(__dirname + `./output/${filename}.${format}`, data, (err) => {
         if (err) {
             console.error(err);
         } else {
