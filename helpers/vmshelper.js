@@ -9,7 +9,7 @@ function createPrices(prices, sptplBillingAddresses) {
     let str = "";
     _.each(prices, p => {
 
-        let cpid = p.cpid || p._id['$numberLong'];
+        let cpid = p._id? p._id['$numberLong'] : p.cpid;
         let cvid = p.clientVendorDetailId || p.client_vendor_id;
 
         str = str + `\n

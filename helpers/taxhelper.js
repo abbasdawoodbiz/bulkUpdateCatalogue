@@ -7,7 +7,7 @@ function createTax(prices) {
 
     let str = '';
     _.each(prices, p => {
-        let cpid = p.cpid || p._id['$numberLong'];
+        let cpid = p._id? p._id['$numberLong'] : p.cpid;
 
         str = str + `\n
         INSERT INTO taxation.centre_product_hsn 
