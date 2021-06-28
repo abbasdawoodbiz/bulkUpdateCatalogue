@@ -1,21 +1,14 @@
 
-const chelper = require('./convert.js');
 let _ = require('lodash');
-let categories = require('./categories');
+let categories = require('../categories');
 
-
-
-
-function createTax() {
-    console.log('initialised create tax function');
-    console.log('read the input file');
-
-    let prices = chelper.getJsonFromCsv('prices');
-
+function createTax(prices) {
     console.log('generate the taxation sql');
 
-    let str = "";
+    let str = '';
     _.each(prices, p => {
+        let cpid = p._id['$numberLong'] || p.cpid;
+
         str = str + `\n
         INSERT INTO taxation.centre_product_hsn 
             (
@@ -32,16 +25,14 @@ function createTax() {
                 '${categories.getDateForPostge()}', 
                 '${categories.getDateForPostge()}', 
                 true, 
-                ${p.cpid}, 
+                ${cpid}, 
                 '${p.hsn_code}', 
                 ${p.hsn_id}, 
                 1
             );`
     });
 
-    console.log('create the file taxation.sql');
-    chelper.writePlainTextFile(str, "taxationinsert", "sql");
-    
+    return str;
 }
 
 module.exports = {

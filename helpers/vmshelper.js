@@ -1,19 +1,17 @@
 
-const chelper = require('./convert.js');
 let _ = require('lodash');
 let categories = require('./categories');
 
-
-async function createVms() {
+function createPrices(prices, sptplBillingAddresses) {
     console.log('initialised create vms function');
     console.log('read the input file');
 
-    let prices = chelper.getJsonFromCsv('prices');
-    let sptplBillingAddresses = chelper.returnBizongoBillingAddressIdMaps(chelper.options.vendor);
-    console.log('generate the vms sql');
-
     let str = "";
     _.each(prices, p => {
+
+        let cpid = p.cpid || p._id['$numberLong'];
+        let cvid = p.clientVendorDetailId || p.client_vendor_id;
+
         str = str + `\n
             INSERT INTO vms.client_vendor_products 
                 (
@@ -40,18 +38,29 @@ async function createVms() {
                     ${p.price}, 
                     ${p.hsn_id},
                     NULL, 
-                    ${p.cpid}, 
+                    ${cpid}, 
                     '${p.name.trim()}', 
                     'INR', 
-                    ${parseFloat(p.client_vendor_id)}
+                    ${parseFloat(cvid)}
                 );`
     });
 
-    console.log('create the file vms.sql');
-    chelper.writePlainTextFile(str, "vmsinsert", "sql");
+    return str;
+}
 
+function updatePrices(prices) {
+    let up = '';
+    _.each(prices, p => {
+        up = up + `\n
+            UPDATE vms.client_vendor_products
+            SET exfactory_price = ${p.price}
+            WHERE client_vendor_detail_id = ${p.client_vendor_id} AND product_id = ${p.cpid};
+        `
+    });
+    return up;
 }
 
 module.exports = {
-    createVms : createVms
+    createPrices : createPrices,
+    updatePrices: updatePrices
 };
