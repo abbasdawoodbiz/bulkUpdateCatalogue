@@ -25,6 +25,7 @@ Thumbs.db
 *.html
 *.zip
 output/*
+helpers/output
 
 # Input
 input.csv
