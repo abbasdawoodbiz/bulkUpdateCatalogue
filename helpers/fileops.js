@@ -11,6 +11,12 @@ function getJsonFromCsv(filename, formatValueByType) {
     }
 }
 
+/**
+ * Function to write a file to the File system  
+ * @param {Stream} data File stream to be written to files
+ * @param {String} filename Desired file name, output into the output dir
+ * @param {String} format Either one of json, csv or sql
+ */
 function writeFile(data, filename, format){
     fs.writeFile( `./output/${filename}.${format}`, data, (err) => {
         if (err) {
@@ -21,6 +27,12 @@ function writeFile(data, filename, format){
     });
 }
 
+/**
+ * Function to preprocess incoming file stream data, and take appropriate conversion before writing to FS   
+ * @param {Object} fileData Incoming data to be written to FS
+ * @param {String} filename Desired file name
+ * @param {String} format Either one of json, csv or sql
+ */
 function writeOutputFile(fileData, filename, format) {
     if(format === 'json'){
         writeFile(filename, JSON.stringify(fileData), format)

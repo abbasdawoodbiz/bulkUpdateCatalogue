@@ -12,9 +12,15 @@ To run this project, you will need:
 ## Running the script
 - Clone this repo using github
 - Install dependencies by running `npm i`
+### For Bulk Cataloguing Dependencies
 - Once dependencies are installed, use the command `node convert.js`
 - Category name has to be from one of the supported categories, and is a mandatory input
 - Output files will be created in the `output` dir
+### For Consumption based inventory file generation
+- Input the dependent files as `sales-data.csv` and `conversion-map.csv` and store in the root dir, formats for the same are available in `resources` dir[resources/"consumption based AR"]
+- Use the command `node sales-to-inventory.js`
+- Output files will be created in the `output` dir with the filename `packaging-inventory.csv`
+
 
 ## Console Help
 Run `node convert.js` to see supported command line parameters. Categories will be updated with every new category bulk upload request.
