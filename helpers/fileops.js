@@ -1,5 +1,6 @@
 let fs = require('fs');
 let csvToJson = require('convert-csv-to-json');
+const jsoncsv = require('json-csv')
 
 function getJsonFromCsv(filename, formatValueByType) {
     let path = `/../${filename}.csv`;
@@ -10,10 +11,7 @@ function getJsonFromCsv(filename, formatValueByType) {
     }
 }
 
-function writeOutputFile(fileData, filename, format) {
-
-    let data = format === 'json' ? JSON.stringify(fileData) : fileData;
-
+function writeFile(data, filename, format){
     fs.writeFile( `./output/${filename}.${format}`, data, (err) => {
         if (err) {
             console.error(err);
@@ -21,6 +19,37 @@ function writeOutputFile(fileData, filename, format) {
             console.log(`${filename}.${format} created!`);
         }
     });
+}
+
+function writeOutputFile(fileData, filename, format) {
+    if(format === 'json'){
+        writeFile(filename, JSON.stringify(fileData), format)
+    } else if (format === 'csv'){
+        jsoncsv.buffered(fileData, {
+            fields:[
+                {
+                    name:'packaging_product',
+                    label:'Packaging Product',
+                    quoted: true
+                },
+                {
+                    name:'location',
+                    label:'Location',
+                    quoted: true
+                },
+                {
+                    name:'quantity',
+                    label:'Quantity',
+                    quoted: false
+                }
+            ]
+        }, (err, csv) => {
+            if(err) console.error(err);
+            writeFile(csv, filename, format);
+        })
+    } else {
+        writeFile(filename, fileData, format)
+    }
 }
 
 module.exports = {

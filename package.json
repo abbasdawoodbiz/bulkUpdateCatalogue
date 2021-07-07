@@ -7,15 +7,19 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Abbas Dawood <abbas.dawood@bizongo.com>",
-  "contributors": [{
-    "name": "Ishan Purohit", "email": "ishan.purohit@bizongo.com"
-  }],
+  "contributors": [
+    {
+      "name": "Ishan Purohit",
+      "email": "ishan.purohit@bizongo.com"
+    }
+  ],
   "license": "ISC",
   "devDependencies": {
     "convert-csv-to-json": "^1.3.0",
     "lodash": "^4.17.21"
   },
   "dependencies": {
+    "json-csv": "^3.0.6",
     "yargs": "^16.2.0"
   },
   "engines": {
@@ -23,8 +27,7 @@
   },
   "engineStrict": true,
   "repository": {
-    "type": "git", 
+    "type": "git",
     "url": "https://github.com/abbasdawoodbiz/bulkUpdateCatalogue.git"
   }
-
 }
