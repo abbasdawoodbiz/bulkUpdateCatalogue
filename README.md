@@ -3,7 +3,7 @@ This project is the repo of any batch uploading using a preset object template t
 
 ## Environment readiness
 To run this project, you will need: 
-- NodeJS. I recommend using nvm to manage multiple node versions on the system, read about it (here)[https://nodejs.org/en/download/package-manager/#nvm]
+- NodeJS. I recommend using nvm to manage multiple node versions on the system, read about it [here](https://nodejs.org/en/download/package-manager/#nvm)
 - Need the input file as discussed earlier, it must be present in the root dir with the name `input.csv` for the script to run
 - NodeJS version has to match the one mentioned in (package.json)[package.json]
 - Make sure `input.csv` file does not have commas(,), apostrophe ('), hyphen (-) to prevent from any errors in script run
@@ -17,7 +17,7 @@ To run this project, you will need:
 - Category name has to be from one of the supported categories, and is a mandatory input
 - Output files will be created in the `output` dir
 ### For Consumption based inventory file generation
-- Input the dependent files as `sales-data.csv` and `conversion-map.csv` and store in the root dir, formats for the same are available in `resources` dir[resources/"consumption based AR"]
+- Input the dependent files as `sales-data.csv` and `conversion-map.csv` and store in the root dir, formats for the same are available in `resources` [dir](./resources/consumptionbasedAR)
 - Use the command `node sales-to-inventory.js`
 - Output files will be created in the `output` dir with the filename `packaging-inventory.csv`
 
