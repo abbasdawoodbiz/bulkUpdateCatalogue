@@ -4,15 +4,15 @@ This project is the repo of any batch uploading using a preset object template t
 ## Environment readiness
 To run this project, you will need: 
 - NodeJS. I recommend using nvm to manage multiple node versions on the system, read about it [here](https://nodejs.org/en/download/package-manager/#nvm)
-- Need the input file as discussed earlier, it must be present in the root dir with the name `input.csv` for the script to run
-- NodeJS version has to match the one mentioned in (package.json)[package.json]
-- Make sure `input.csv` file does not have commas(,), apostrophe ('), hyphen (-) to prevent from any errors in script run
-- Make sure you verify the category template id in all categories in `categories.json` before you run the script
 
 ## Running the script
 - Clone this repo using github
 - Install dependencies by running `npm i`
 ### For Bulk Cataloguing Dependencies
+- Need the input file as discussed earlier, it must be present in the root dir with the name `input.csv` for the script to run
+- NodeJS version has to match the one mentioned in (package.json)[package.json]
+- Make sure `input.csv` file does not have commas(,), apostrophe ('), hyphen (-) to prevent from any errors in script run
+- Make sure you verify the category template id in all categories in `categories.json` before you run the script
 - Once dependencies are installed, use the command `node convert.js`
 - Category name has to be from one of the supported categories, and is a mandatory input
 - Output files will be created in the `output` dir
