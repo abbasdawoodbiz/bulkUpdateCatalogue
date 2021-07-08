@@ -35,7 +35,7 @@ function writeFile(data, filename, format){
  */
 function writeOutputFile(fileData, filename, format) {
     if(format === 'json'){
-        writeFile(filename, JSON.stringify(fileData), format)
+        writeFile(JSON.stringify(fileData),filename, format)
     } else if (format === 'csv'){
         jsoncsv.buffered(fileData, {
             fields:[
@@ -60,7 +60,7 @@ function writeOutputFile(fileData, filename, format) {
             writeFile(csv, filename, format);
         })
     } else {
-        writeFile(filename, fileData, format)
+        writeFile(fileData, filename, format)
     }
 }
 
