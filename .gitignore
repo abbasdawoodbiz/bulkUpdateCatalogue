@@ -29,5 +29,5 @@ helpers/output
 
 # Input
 input.csv
-sales-data.csv
-conversion-map.csv
+./sales-data.csv
+./conversion-map.csv
