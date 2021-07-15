@@ -11,6 +11,7 @@ const yargs = require('yargs');
 let fileOpsHelper = require('../helpers/fileops');
 
 //Date
+
 function getDate() {
     return new Date().toISOString();
 }
@@ -19,60 +20,35 @@ function getDate() {
 function createPartnerMap() {
     let mapping = fileOpsHelper.getJsonFromCsv('partnermapping');
     let partnerMap = []
-   
-    _.each(mapping, (m,i) => {
-    console.log(m);
-    // let leadTimeBuffer = 0
-    // let createdAt = getDate()
-    // let updatedAt = getDate()
-    // let minimumOrderQuantity = 1
-    // let isPreferred = "TRUE"
-    // let active = "TRUE"
-    // let _class = "com.bizongo.partnerservices.models.mongo.PartnerConfiguration"
-    let pMap = {}
-    pMap.skuCode = m.skuCode.trim()
-    pMap.leadTimeBuffer = 0
-    pMap.partnerName = m.partnerName
-    pMap.region = m.region
-    pMap.isPreferred = true
-    pMap.active = true
-    pMap.createdAt = {
-        "$date": getDate()
-    } 
-    pMap.updatedAt = {
-        "$date": getDate()
-    } 
-    pMap.minimumOrderQuantity = 1
-    pMap._class = "com.bizongo.partnerservices.models.mongo.PartnerConfiguration"
-    pMap.sellerPrice = parseFloat(m.sellerPrice)
 
+    _.each(mapping, (m, i) => {
+        console.log(m);
 
-    // let map = {
-    //         "skuCode": `${m.skuCode.trim()}`,
-    //         "leadTimeBuffer": 0,
-    //         "partnerName": `${m.partnerName}`,
-    //         "region": `${m.region}`,
-    //         "isPreferred": isPreferred,
-    //         "active": active,
-    //         "createdAt": {
-    //             "$date": createdAt
-    //         },
-    //         "updatedAt": {
-    //             "$date": updatedAt
-    //         },
-    //         "minimumOrderQuantity": minimumOrderQuantity,
-    //         "_class": _class,
-    //         "sscLeadTime": [],
-    //         "sellerPrice": parseFloat(m.sellerPrice),
-    //     };
+        let pMap = {}
+        pMap.skuCode = m.skuCode.trim()
+        pMap.leadTimeBuffer = 0
+        pMap.partnerName = m.partnerName
+        pMap.region = m.region
+        pMap.isPreferred = true
+        pMap.active = true
+        pMap.createdAt = {
+            "$date": getDate()
+        }
+        pMap.updatedAt = {
+            "$date": getDate()
+        }
+        pMap.minimumOrderQuantity = 1
+        pMap._class = "com.bizongo.partnerservices.models.mongo.PartnerConfiguration"
+        pMap.sellerPrice = parseFloat(m.sellerPrice)
 
-    console.log(`Mapped ${m.skuCode} with partner ${m.partnerName}`);
-    partnerMap.push(pMap)
-    if (i+1 == mapping.length)
-    fileOpsHelper.writeOutputFile(partnerMap, 'partnermap', 'json');
-    else 
-    console.log('in progress');
-});
+        console.log(`Mapped ${m.skuCode} with partner ${m.partnerName}`);
+        partnerMap.push(pMap)
+
+        if (i + 1 == mapping.length)
+            fileOpsHelper.writeOutputFile(partnerMap, 'partnermap', 'json');
+        else
+            console.log('in progress');
+    });
 
 };
 
