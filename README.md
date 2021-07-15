@@ -29,11 +29,11 @@ To run this project, you will need:
     -   id: Product ID (fag end digits of SKU code)
     -   client_id: Company id as on UMS >> Companies
     -   client_vendor_id: Client vendor detail id can be obtained from one existing entry on vms (relation between the buyer
--   company and smartpaddle entity aka the vendor)
--   centre_id: Centre id as on UMS >> Centres and where the centre product is required
--   cpid: Centre Product ID
--   hsn_code: HSN code
--   hsn_id: HSN master id available for the HSN and tax rate combination in Taxation >> HSN GST details
+    -   company and smartpaddle entity aka the vendor)
+    -   centre_id: Centre id as on UMS >> Centres and where the centre product is required
+    -   cpid: Centre Product ID
+    -   hsn_code: HSN code
+    -   hsn_id: HSN master id available for the HSN and tax rate combination in Taxation >> HSN GST details
 - Use the command `node convert.js -p -t -v <option>` after switching to features dir
 - Values for option v are are G,M,D,K (G for Smartpaddle Haryana and so on and so forth)
 - Using G : `node convert.js -p -t -v G` will create pricing for Smartpaddle Haryana
