@@ -18,7 +18,7 @@ function getJsonFromCsv(filename, formatValueByType) {
  * @param {String} format Either one of json, csv or sql
  */
 function writeFile(data, filename, format){
-    fs.writeFile( `./output/${filename}.${format}`, data, (err) => {
+    fs.writeFile( `../output/${filename}.${format}`, data, (err) => {
         if (err) {
             console.error(err);
         } else {
