@@ -8,7 +8,7 @@ let _ = require('lodash');
 const yargs = require('yargs');
 
 // Project file imports
-let fileOpsHelper = require('./helpers/fileops');
+let fileOpsHelper = require('../helpers/fileops');
 
 let packagingConsumption = [];
 let conversionMap = [];

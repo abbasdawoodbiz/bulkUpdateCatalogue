@@ -31,3 +31,5 @@ helpers/output
 input.csv
 ./sales-data.csv
 ./conversion-map.csv
+./partnermapping.csv
+./prices.csv

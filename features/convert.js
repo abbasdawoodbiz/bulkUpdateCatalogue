@@ -8,10 +8,10 @@ let _ = require('lodash');
 const yargs = require('yargs');
 
 // Project file imports
-let categories = require('./helpers/categories');
-let fileOpsHelper = require('./helpers/fileops');
-let taxHelper = require('./helpers/taxhelper');
-let vmsHelper = require('./helpers/vmshelper');
+let categories = require('../helpers/categories');
+let fileOpsHelper = require('../helpers/fileops');
+let taxHelper = require('../helpers/taxhelper');
+let vmsHelper = require('../helpers/vmshelper');
 
 // Global variables
 let sptplBillingAddresses = '';
