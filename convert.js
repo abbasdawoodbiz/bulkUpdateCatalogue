@@ -12,6 +12,7 @@ let categories = require('./helpers/categories');
 let fileOpsHelper = require('./helpers/fileops');
 let taxHelper = require('./helpers/taxhelper');
 let vmsHelper = require('./helpers/vmshelper');
+let paymentsHelper = require('./helpers/payments');
 
 // Global variables
 let sptplBillingAddresses = '';
@@ -24,6 +25,7 @@ const options = yargs
     .option('v', { alias: 'vendor', describe: "use on of G,M,D,K", type: 'string', demandOption: true })
     .option('p', { alias: 'create-price', describe: "create entries for each centre product in vms", type: 'boolean' })
     .option('t', { alias: 'create-tax', describe: "create entries for each centre product in taxation", type: 'boolean' })
+    .option('pr', { alias: 'create-payments', describe: "create entries for each payment in finance", type: 'boolean' })
     .argv;
 
 function returnBizongoBillingAddressIdMaps(vendorId) {
@@ -181,40 +183,52 @@ function init() {
         sptplBillingAddresses = returnBizongoBillingAddressIdMaps(options.vendor);
         // console.log(module);
 
-        if (options['update-price'] === 'update') {
+        if(options['create-payments']){
+            console.log('initialised payments');
             fileOpsHelper.writeOutputFile(
-                vmsHelper.updatePrices(
-                    fileOpsHelper.getJsonFromCsv('prices')
-                ), 'vmsupdate', 'sql'
-            );
-        }
-            
-        if (options['create-price']) {
-            console.log('initialised vmsoptions');
-            fileOpsHelper.writeOutputFile(
-                vmsHelper.createPrices(
-                    fileOpsHelper.getJsonFromCsv('prices'), 
-                    sptplBillingAddresses
-                ),'vmsinsert','sql');
+                paymentsHelper.createPayments(
+                    fileOpsHelper.getJsonFromCsv('payments')
+                ), 'payments','sql'
+            )
+        } else {
+            if (options['update-price'] === 'update') {
+                fileOpsHelper.writeOutputFile(
+                    vmsHelper.updatePrices(
+                        fileOpsHelper.getJsonFromCsv('prices')
+                    ), 'vmsupdate', 'sql'
+                );
+            }
+                
+            if (options['create-price']) {
+                console.log('initialised vmsoptions');
+                fileOpsHelper.writeOutputFile(
+                    vmsHelper.createPrices(
+                        fileOpsHelper.getJsonFromCsv('prices'), 
+                        sptplBillingAddresses
+                    ),'vmsinsert','sql');
+            }
+    
+            if (options['create-tax']) {
+                console.log('initialised taxoptions');
+                fileOpsHelper.writeOutputFile(
+                    taxHelper.createTax(
+                        fileOpsHelper.getJsonFromCsv('prices')
+                    ),'taxationinsert','sql');
+            }
         }
 
-        if (options['create-tax']) {
-            console.log('initialised taxoptions');
-            fileOpsHelper.writeOutputFile(
-                taxHelper.createTax(
-                    fileOpsHelper.getJsonFromCsv('prices')
-                ),'taxationinsert','sql');
-        }
-
-        if (!options['create-tax'] && !options['create-price'] && !options['update-price']) {
-            createProduct();
-            createCentreProducts();
-        }
+        // if (!options['create-tax'] && !options['create-price'] && !options['update-price']) {
+        //     createProduct();
+        //     createCentreProducts();
+        // }
 
     } else {
         console.error('Stopping further process.. vendor is mandatory, use of the options');
     }
 }
+
+
+
 
 init();
 

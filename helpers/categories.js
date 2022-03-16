@@ -2,8 +2,9 @@ function getDate() {
     return new Date().toISOString();
 }
 
-function getDateForPostge() {
-    return getDate().split('T').join(' ').slice(0, -1);
+function getDateForPostge(dateString) {
+    let d = dateString || getDate();
+    return d.split('T').join(' ').slice(0);
 }
 
 function generateLeggingsProduct(id, name, category_id, color, size, design, material, mrp, pack_size) {
