@@ -8,11 +8,18 @@ let _ = require('lodash');
 const yargs = require('yargs');
 
 // Project file imports
+<<<<<<< HEAD:convert.js
 let categories = require('./helpers/categories');
 let fileOpsHelper = require('./helpers/fileops');
 let taxHelper = require('./helpers/taxhelper');
 let vmsHelper = require('./helpers/vmshelper');
 let paymentsHelper = require('./helpers/payments');
+=======
+let categories = require('../helpers/categories');
+let fileOpsHelper = require('../helpers/fileops');
+let taxHelper = require('../helpers/taxhelper');
+let vmsHelper = require('../helpers/vmshelper');
+>>>>>>> 5a76c044d623345c8eb3ab6a0682f80cfea3404a:features/convert.js
 
 // Global variables
 let sptplBillingAddresses = '';

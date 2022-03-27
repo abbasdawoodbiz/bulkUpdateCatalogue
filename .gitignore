@@ -32,3 +32,6 @@ input.csv
 ./sales-data.csv
 ./conversion-map.csv
 payments.csv
+./partnermapping.csv
+./prices.csv
+

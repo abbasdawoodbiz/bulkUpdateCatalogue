@@ -4,7 +4,9 @@
   "description": "",
   "main": "convert.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "partnermapping" : "node features/partnermap.js"
+    
   },
   "author": "Abbas Dawood <abbas.dawood@bizongo.com>",
   "contributors": [
