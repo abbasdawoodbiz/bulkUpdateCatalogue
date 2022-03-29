@@ -8,18 +8,11 @@ let _ = require('lodash');
 const yargs = require('yargs');
 
 // Project file imports
-<<<<<<< HEAD:convert.js
-let categories = require('./helpers/categories');
-let fileOpsHelper = require('./helpers/fileops');
-let taxHelper = require('./helpers/taxhelper');
-let vmsHelper = require('./helpers/vmshelper');
-let paymentsHelper = require('./helpers/payments');
-=======
 let categories = require('../helpers/categories');
 let fileOpsHelper = require('../helpers/fileops');
 let taxHelper = require('../helpers/taxhelper');
+let paymentsHelper = require('../helpers/payments');
 let vmsHelper = require('../helpers/vmshelper');
->>>>>>> 5a76c044d623345c8eb3ab6a0682f80cfea3404a:features/convert.js
 
 // Global variables
 let sptplBillingAddresses = '';
@@ -90,6 +83,7 @@ async function createProduct() {
             case '1097': s = categories.generateGenericProduct(p.id, p.name, p.category_id, p.model_number, p.type, p.pack_size); break;
             case '1098': s = categories.generateGenericProduct(p.id, p.name, p.category_id, p.model_number, p.type, p.pack_size); break;
             case '1063': s = categories.generateunisextoys(p.id, p.name, p.category_id, p.age, p.mrp, p.design, p.pack_size); break;
+            case '10': s = categories.generateCourierBags(); break;
         }
         console.log('Converted product for ' + p.name);
         return s;
@@ -104,7 +98,7 @@ async function createCentreProducts() {
 
     products = _.map(products, p => {
         console.log(p);
-        let item_code = p.model_number ? p.model_number.trim() : p.design.trim();
+        let item_code = p.model_number ? p.model_number.trim() : (p.design ? p.design.trim() : null);
 
         let cp = {
             "price": parseFloat(p.price),
@@ -224,18 +218,15 @@ function init() {
             }
         }
 
-        // if (!options['create-tax'] && !options['create-price'] && !options['update-price']) {
-        //     createProduct();
-        //     createCentreProducts();
-        // }
+        if (!options['create-tax'] && !options['create-price'] && !options['update-price']) {
+            createProduct();
+            createCentreProducts();
+        }
 
     } else {
         console.error('Stopping further process.. vendor is mandatory, use of the options');
     }
 }
-
-
-
 
 init();
 
